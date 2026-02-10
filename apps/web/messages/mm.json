@@ -1,0 +1,34 @@
+{
+    "Dashboard": {
+        "title": "SignageERP",
+        "welcome": "Welcome back, Boss",
+        "quickActions": "အမြန်လုပ်ဆောင်ချက်များ",
+        "todayOverview": "ယနေ့အကျဉ်းချုပ်",
+        "totalSales": "စုစုပေါင်းအရောင်း",
+        "pendingOrders": "လက်ကျန်အော်ဒါများ",
+        "menu": {
+            "newQuote": "Quote အသစ်",
+            "newQuoteDesc": "စျေးနှုန်းတွက်ချက်ရန်",
+            "orders": "အော်ဒါများ",
+            "ordersDesc": "အလုပ်အခြေအနေကြည့်ရန်",
+            "customers": "ဖောက်သည်များ",
+            "customersDesc": "ဖောက်သည်စာရင်း",
+            "products": "ကုန်ပစ္စည်းများ",
+            "productsDesc": "စျေးနှုန်းပြင်ရန်"
+        }
+    },
+    "Quote": {
+        "title": "အမြန်စျေးနှုန်း",
+        "subtitle": "ဆိုင်းဘုတ်စျေးနှုန်းတွက်ချက်ရန်",
+        "sectionDimensions": "အရွယ်အစားနှင့် ပစ္စည်း",
+        "width": "အကျယ် (မီတာ)",
+        "height": "အမြင့် (မီတာ)",
+        "materialPrice": "ပစ္စည်းစျေးနှုန်း (sqm)",
+        "laborCost": "လက်ခနှင့် တပ်ဆင်ခ",
+        "estimatedPrice": "ခန့်မှန်းစျေးနှုန်း",
+        "createOrder": "အော်ဒါဖွင့်ရန်",
+        "printQuote": "Quote ထုတ်ရန်",
+        "jobsToday": "ယနေ့အလုပ်များ",
+        "pending": "လက်ကျန်"
+    }
+}

@@ -1,0 +1,179 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum MaterialType {
+  VINYL
+  SUBSTRATE
+  LAMINATE
+  INK
+  OTHER
+}
+
+enum UnitType {
+  SQM
+  LINEAR_METER
+  PIECE
+}
+
+enum TransactionType {
+  STOCK_IN
+  STOCK_OUT
+  ADJUSTMENT
+}
+
+// Multi-tenant core (Hidden complexity for MVP)
+model Organization {
+  id        String   @id @default(uuid())
+  name      String
+  code      String   @unique // e.g., "MYSHOP"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customers Customer[]
+  products  Product[]
+  materials Material[]
+  orders    Order[]
+}
+
+// Customers
+model Customer {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  name    String
+  phone   String?
+  lineId  String?
+  address String?
+  taxId   String?
+
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Products (Base templates like "Vinyl Sticker", "Lightbox")
+model Product {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  name        String
+  description String?
+  imageUrl    String?
+  basePrice   Float   @default(0) // Starting price
+
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Materials (Raw materials for calculation)
+model Material {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  name         String // e.g. "Vinyl Glossy", "Acrylic 3mm"
+  type         MaterialType @default(OTHER)
+  unit         String // "sqm", "sheet", "meter" - Consider migrating to UnitType enum later
+  costPrice    Float // Cost per unit
+  sellingPrice Float // Selling price per unit (for calculator)
+
+  wasteFactor Float @default(1.15) // 15% waste
+  inStock     Float @default(0)
+
+  pricingTiers PricingTier[]
+  transactions StockTransaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PricingTier {
+  id         String   @id @default(uuid())
+  materialId String
+  material   Material @relation(fields: [materialId], references: [id])
+
+  minQuantity     Float
+  discountPercent Float // e.g. 10 for 10%
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Orders
+model Order {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  orderNumber String // Human readable: JOB-2402001 (Generated)
+
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+
+  status String @default("DRAFT") // DRAFT, QUOTED, CONFIRMED, DESIGNING, PRODUCTION, INSTALLATION, COMPLETED, CANCELLED
+
+  totalAmount Float @default(0)
+  vatAmount   Float @default(0)
+  grandTotal  Float @default(0)
+
+  items OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Order Items (Individual line items)
+model OrderItem {
+  id      String @id @default(uuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  name     String // Snapshot of product name
+  width    Float? // Width in meters
+  height   Float? // Height in meters
+  quantity Int    @default(1)
+
+  unitPrice  Float
+  totalPrice Float
+
+  details String? // Store selected material, finishing options, etc. (JSON stringified)
+}
+
+// Design Files
+model DesignFile {
+  id      String @id @default(uuid())
+  orderId String
+
+  fileName String
+  fileUrl  String
+  fileType String
+
+  createdAt DateTime @default(now())
+}
+
+// Stock Management
+model StockTransaction {
+  id          String   @id @default(uuid())
+  materialId  String
+  material    Material @relation(fields: [materialId], references: [id])
+
+  type      TransactionType
+  quantity  Float
+  reference String? // PO-123, JOB-456
+  notes     String?
+
+  createdAt DateTime @default(now())
+}

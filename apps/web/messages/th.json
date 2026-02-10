@@ -1,0 +1,102 @@
+{
+    "common": {
+        "save": "บันทึก",
+        "cancel": "ยกเลิก",
+        "delete": "ลบ",
+        "edit": "แก้ไข",
+        "add": "เพิ่ม",
+        "search": "ค้นหา",
+        "filter": "กรอง",
+        "export": "ส่งออก",
+        "import": "นำเข้า",
+        "loading": "กำลังโหลด...",
+        "error": "เกิดข้อผิดพลาด",
+        "success": "สำเร็จ",
+        "confirm": "ยืนยัน"
+    },
+    "Dashboard": {
+        "title": "SignageERP",
+        "welcome": "ยินดีต้อนรับครับบอส",
+        "quickActions": "เมนูด่วน",
+        "todayOverview": "ภาพรวมวันนี้",
+        "totalSales": "ยอดขายรวม",
+        "pendingOrders": "ออเดอร์ค้างส่ง",
+        "todaySales": "ยอดขายวันนี้",
+        "pendingJobs": "งานค้าง",
+        "createQuote": "สร้างใบเสมอราคา",
+        "manageStock": "เช็คสต็อก",
+        "viewKanban": "ดูงานผลิต"
+    },
+    "Quote": {
+        "title": "ใบเสนอราคา",
+        "create": "สร้างใบเสนอราคาใหม่",
+        "customer": "ลูกค้า",
+        "items": "รายการ",
+        "total": "ยอดรวม",
+        "status": "สถานะ"
+    },
+    "Kanban": {
+        "title": "กระดานงาน",
+        "todo": "รอเริ่ม",
+        "inProgress": "กำลังทำ",
+        "done": "เสร็จสิ้น",
+        "backlog": "งานค้าง"
+    },
+    "Settings": {
+        "title": "ตั้งค่า",
+        "profile": "ข้อมูลส่วนตัว",
+        "notifications": "การแจ้งเตือน",
+        "language": "ภาษา",
+        "theme": "ธีม"
+    },
+    "Orders": {
+        "title": "จัดการออเดอร์",
+        "newOrder": "ออเดอร์ใหม่",
+        "orderNumber": "เลขที่ออเดอร์",
+        "customer": "ลูกค้า",
+        "status": "สถานะ",
+        "amount": "ยอดรวม",
+        "date": "วันที่",
+        "actions": "จัดการ",
+        "createQuotation": "สร้างใบเสนอราคา",
+        "createInvoice": "สร้างใบแจ้งหนี้",
+        "markAsPaid": "ทำเครื่องหมายว่าจ่ายแล้ว"
+    },
+    "Stock": {
+        "title": "จัดการสต็อก",
+        "addMaterial": "เพิ่มวัสดุ",
+        "stockIn": "รับเข้าสต็อก",
+        "stockOut": "เบิกใช้วัสดุ",
+        "adjust": "ปรับยอด",
+        "name": "ชื่อวัสดุ",
+        "unit": "หน่วย",
+        "cost": "ราคาทุน",
+        "selling": "ราคาขาย",
+        "balance": "คงเหลือ",
+        "history": "ประวัติ",
+        "actions": "จัดการ",
+        "reference": "อ้างอิง",
+        "notes": "หมายเหตุ",
+        "quantity": "จำนวน",
+        "confirm": "ยืนยัน",
+        "cancel": "ยกเลิก"
+    },
+    "Pricing": {
+        "title": "คำนวณราคา",
+        "calculator": "เครื่องคิดเลขราคา",
+        "selectMaterial": "เลือกวัสดุ",
+        "width": "ความกว้าง",
+        "height": "ความสูง",
+        "quantity": "จำนวน",
+        "dimensions": "ขนาด",
+        "pricePerUnit": "ราคาต่อหน่วย",
+        "subtotal": "รวมเป็นเงิน",
+        "discount": "ส่วนลด",
+        "total": "ราคาสุทธิ",
+        "calculate": "คำนวณ",
+        "tierApplied": "ได้รับส่วนลดปริมาณ",
+        "noMaterial": "กรุณาเลือกวัสดุ",
+        "meters": "เมตร",
+        "centimeters": "ซม."
+    }
+}

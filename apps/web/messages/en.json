@@ -1,0 +1,102 @@
+{
+    "common": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add",
+        "search": "Search",
+        "filter": "Filter",
+        "export": "Export",
+        "import": "Import",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "confirm": "Confirm"
+    },
+    "Dashboard": {
+        "title": "SignageERP",
+        "welcome": "Welcome back, Boss",
+        "quickActions": "Quick Actions",
+        "todayOverview": "Today's Overview",
+        "totalSales": "Total Sales",
+        "pendingOrders": "Pending Orders",
+        "todaySales": "Today's Sales",
+        "pendingJobs": "Pending Jobs",
+        "createQuote": "Create Quote",
+        "manageStock": "Check Stock",
+        "viewKanban": "View Production"
+    },
+    "Quote": {
+        "title": "Quotations",
+        "create": "Create New Quote",
+        "customer": "Customer",
+        "items": "Items",
+        "total": "Total",
+        "status": "Status"
+    },
+    "Kanban": {
+        "title": "Kanban Board",
+        "todo": "To Do",
+        "inProgress": "In Progress",
+        "done": "Done",
+        "backlog": "Backlog"
+    },
+    "Settings": {
+        "title": "Settings",
+        "profile": "Profile",
+        "notifications": "Notifications",
+        "language": "Language",
+        "theme": "Theme"
+    },
+    "Orders": {
+        "title": "Order Management",
+        "newOrder": "New Order",
+        "orderNumber": "Order No.",
+        "customer": "Customer",
+        "status": "Status",
+        "amount": "Amount",
+        "date": "Date",
+        "actions": "Actions",
+        "createQuotation": "Create Quotation",
+        "createInvoice": "Create Invoice",
+        "markAsPaid": "Mark as Paid"
+    },
+    "Stock": {
+        "title": "Stock Management",
+        "addMaterial": "Add Material",
+        "stockIn": "Stock In",
+        "stockOut": "Stock Out",
+        "adjust": "Adjust",
+        "name": "Material Name",
+        "unit": "Unit",
+        "cost": "Cost Price",
+        "selling": "Selling Price",
+        "balance": "Balance",
+        "history": "History",
+        "actions": "Actions",
+        "reference": "Reference",
+        "notes": "Notes",
+        "quantity": "Quantity",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+    },
+    "Pricing": {
+        "title": "Pricing Calculator",
+        "calculator": "Price Calculator",
+        "selectMaterial": "Select Material",
+        "width": "Width",
+        "height": "Height",
+        "quantity": "Quantity",
+        "dimensions": "Dimensions",
+        "pricePerUnit": "Price / Unit",
+        "subtotal": "Subtotal",
+        "discount": "Discount",
+        "total": "Total Price",
+        "calculate": "Calculate",
+        "tierApplied": "Volume Discount Applied",
+        "noMaterial": "Please select a material",
+        "meters": "m",
+        "centimeters": "cm"
+    }
+}

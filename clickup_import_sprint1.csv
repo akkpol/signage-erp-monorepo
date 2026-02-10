@@ -1,0 +1,219 @@
+Name,Description,Priority,Status,Assignees,Tags,Due Date,Time Estimate (hours),Tech Area,Complexity,Financial Impact,Needs Testing,Sprint,List Name
+"Task 1.1.1: Setup PostgreSQL + Prisma","Setup database and ORM for multi-tenant architecture.
+
+Steps:
+1. Install Prisma: npm install prisma @prisma/client
+2. Initialize: npx prisma init
+3. Configure DATABASE_URL in .env
+4. Create schema.prisma with Organization model
+5. Run migration: npx prisma migrate dev --name init
+6. Generate client: npx prisma generate
+
+Acceptance Criteria:
+- Prisma connects to PostgreSQL
+- Can create test Organization",High,To Do,,setup,database,phase1,2026-02-07,4,Database,3,No,Yes,1.1,Sprint 1.1: Multi-Tenant Foundation
+"Task 1.1.2: Organization & BillingProfile Models","Create Prisma models for multi-tenancy foundation.
+
+Models to create:
+- Organization (tenant root)
+- BillingProfile (multi-entity killer feature)
+
+Acceptance Criteria:
+- Migration runs successfully
+- Can create Organization with 3 Billing Profiles
+
+Dependencies: Blocked by Task 1.1.1",High,To Do,,database,schema,phase1,2026-02-07,3,Database,3,No,Yes,1.1,Sprint 1.1: Multi-Tenant Foundation
+"Task 1.1.3: Tenant Isolation Middleware ⚠️ CRITICAL","⚠️ SECURITY CRITICAL: Prevent data leakage between organizations.
+
+Create Prisma middleware that auto-injects organizationId filter on ALL queries.
+
+Acceptance Criteria:
+- Middleware auto-injects organizationId
+- CANNOT retrieve data from different org
+- Unit tests prove data isolation
+- Security audit passed
+
+Dependencies: Blocked by Task 1.1.2",Urgent,To Do,,security,critical,middleware,phase1,2026-02-12,6,Backend,8,No,Yes,1.1,Sprint 1.1: Multi-Tenant Foundation
+"Task 1.1.4: User Authentication (NextAuth.js)","Implement user authentication with NextAuth.js.
+
+Features:
+- Email/Password login
+- Google OAuth (optional)
+- Session includes organizationId
+
+Steps:
+1. Install: npm install next-auth
+2. Create /api/auth/[...nextauth]
+3. Configure providers
+4. Create User model with organizationId
+5. Session callback includes organization data
+
+Acceptance Criteria:
+- Register new user works
+- Login works
+- Session contains user.organizationId",High,To Do,,auth,nextauth,phase1,2026-02-14,8,Backend,6,No,Yes,1.1,Sprint 1.1: Multi-Tenant Foundation
+"Task 1.1.5: Authorization & RBAC","Implement role-based access control.
+
+Roles:
+- OWNER (full access)
+- ADMIN (all except billing)
+- SALES (quote/order only)
+- DESIGNER (design files only)
+- TECHNICIAN (production only)
+
+Acceptance Criteria:
+- OWNER can do everything
+- SALES cannot access production
+- TECH cannot edit quotes
+
+Dependencies: Blocked by Task 1.1.4",Medium,To Do,,auth,rbac,phase1,2026-02-14,4,Backend,5,No,Yes,1.1,Sprint 1.1: Multi-Tenant Foundation
+"Task 1.2.1: Product Model with JSONB","Create Product model with dynamic pricing formula and JSONB specs.
+
+Schema:
+- pricingFormula (String): formula as text
+- attributesConfig (Json): dynamic form fields
+
+Acceptance Criteria:
+- Can create Product with formula
+- attributesConfig validates correctly",High,To Do,,database,pricing,phase1,2026-02-18,3,Database,4,Yes,Yes,1.2,Sprint 1.2: Pricing Engine
+"Task 1.2.2: GlobalConstant Table","Create table for user-defined variables (electricityRate, markup, etc.)
+
+Seed constants:
+- electricityRate: 8.5 baht/kWh
+- minimumWage: 350 baht/day
+- markup: 0.3 (30%)
+
+Acceptance Criteria:
+- Can CRUD constants
+- Unique constraint works (no duplicate keys per org)",High,To Do,,database,settings,phase1,2026-02-18,2,Database,2,No,Yes,1.2,Sprint 1.2: Pricing Engine
+"Task 1.2.3: Formula Evaluator Service ⚠️ CRITICAL","⚠️ CRITICAL: This calculates money. Zero tolerance for bugs.
+
+Create service that safely evaluates pricing formulas.
+
+Requirements:
+- Validate formula is safe (no code injection)
+- Round to 2 decimal places
+- Handle division by zero
+- Handle undefined variables
+- 100% unit test coverage
+
+Acceptance Criteria:
+- Can evaluate complex formulas
+- All tests pass (40+ test cases)
+- No security vulnerabilities
+- Performance < 100ms per calculation
+
+Dependencies: Blocked by Task 1.2.1, 1.2.2",Urgent,To Do,,critical,pricing,financial,security,phase1,2026-02-21,8,Backend,10,Yes,Yes,1.2,Sprint 1.2: Pricing Engine
+"Task 1.2.4: Pricing Calculation API","Create REST API endpoint for price calculation.
+
+Endpoint: POST /api/pricing/calculate
+
+Returns breakdown:
+- materialCost
+- laborCost
+- subtotal
+- discount
+- total
+
+Acceptance Criteria:
+- API returns correct calculation
+- Includes breakdown detail
+- Logs all calculations (audit trail)
+
+Dependencies: Blocked by Task 1.2.3",High,To Do,,api,pricing,phase1,2026-02-21,6,Backend,6,Yes,Yes,1.2,Sprint 1.2: Pricing Engine
+"Task 1.3.1: Customer CRUD","Standard CRUD with multi-tenancy.
+
+Endpoints:
+- POST /api/customers (create)
+- GET /api/customers (list with pagination)
+- GET /api/customers/:id
+- PUT /api/customers/:id
+- DELETE /api/customers/:id (soft delete)
+
+Acceptance Criteria:
+- CRUD works
+- Tenant isolation enforced
+- Validation works",High,To Do,,api,crud,phase1,2026-02-25,4,Backend,4,No,Yes,1.3,Sprint 1.3: Quote & Billing
+"Task 1.3.2: Quote Creation Form","Frontend form with real-time pricing.
+
+Features:
+1. Select Customer
+2. Select Billing Profile
+3. Add items (dynamic fields from attributesConfig)
+4. Real-time price calculation
+5. Show total with VAT
+
+Acceptance Criteria:
+- Form loads product attributes dynamically
+- Price updates in real-time
+- Can create Quote",High,To Do,,frontend,forms,phase1,2026-02-28,12,Frontend,7,No,Yes,1.3,Sprint 1.3: Quote & Billing
+"Task 1.3.3: Multi-Entity Billing Logic","Tax calculation based on billing profile.
+
+Logic:
+- VAT profile → Add 7% VAT
+- Non-VAT → No tax
+- Individual → Check yearlyRevenue limit (1.8M warning)
+
+Acceptance Criteria:
+- Tax calculated correctly for each type
+- Individual limit warning shows at 1.65M+",High,To Do,,backend,billing,tax,phase1,2026-03-01,6,Backend,6,Yes,Yes,1.3,Sprint 1.3: Quote & Billing
+"Task 1.3.4: PDF Generation (Quote)","Generate PDF quotation.
+
+Template:
+- Company logo
+- Billing Profile details
+- Customer details
+- Line items table
+- Subtotal / Tax / Total
+- Payment terms
+- QR Code (PromptPay)
+
+Library: @react-pdf/renderer or puppeteer
+
+Acceptance Criteria:
+- PDF generates correctly
+- Shows correct tax calculation
+- Download works",High,To Do,,backend,pdf,phase1,2026-03-05,8,Backend,6,No,Yes,1.3,Sprint 1.3: Quote & Billing
+"Task 1.3.5: QR Code (PromptPay)","Generate Thai QR Code for payments.
+
+Features:
+- Use PromptPay standard
+- Include amount
+- Include ref number
+
+Library: promptpay-qr
+
+Acceptance Criteria:
+- QR code scans correctly in mobile banking apps
+- Amount pre-filled",Medium,To Do,,backend,payment,phase1,2026-03-07,4,Backend,4,No,Yes,1.3,Sprint 1.3: Quote & Billing
+"Task 1.4.1: Running Number Config","Allow users to customize document numbering.
+
+Formats:
+- Invoice: INV-{YEAR}-{COUNTER:4}
+- Quote: QT-{YYMM}-{COUNTER:3}
+
+Acceptance Criteria:
+- User can change format
+- Numbers auto-increment correctly",Medium,To Do,,backend,settings,phase1,2026-03-10,6,Backend,5,No,Yes,1.4,Sprint 1.4: Settings & Polish
+"Task 1.4.2: Global Constants UI","Create UI for managing global constants.
+
+Features:
+- List all constants
+- Edit value
+- Add new constant
+- Delete constant
+
+Acceptance Criteria:
+- Can update electricityRate
+- Formula uses new value immediately",Medium,To Do,,frontend,settings,phase1,2026-03-12,4,Frontend,4,No,No,1.4,Sprint 1.4: Settings & Polish
+"Task 1.4.3: Formula Builder (Basic)","Tag-based formula input.
+
+Features:
+- User types { → show variable list
+- Select variable → insert into formula
+- Syntax highlighting
+- Validation before save
+
+Acceptance Criteria:
+- User can build formula without coding
+- Formula validates before save",Low,To Do,,frontend,pricing,phase1,2026-03-14,8,Frontend,7,No,No,1.4,Sprint 1.4: Settings & Polish

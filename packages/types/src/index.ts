@@ -16,13 +16,23 @@ export enum UnitType {
 /**
  * วัสดุ (Material)
  */
+export interface PricingTier {
+    id: string;
+    minQuantity: number;
+    discountPercent: number;
+}
+
 export interface Material {
     id: string;
-    name: string;              // ชื่อวัสดุ เช่น "Flex", "Inkjet", "Acrylic"
-    description?: string;
-    pricePerUnit: number;      // ราคาต่อหน่วย
-    unit: UnitType;            // หน่วยวัด
-    isActive: boolean;
+    name: string;
+    type: string;              // VINYL, SUBSTRATE, etc.
+    costPrice: number;         // ต้นทุน
+    sellingPrice: number;      // ราคาขาย
+    wasteFactor: number;       // เผื่อเสีย (e.g. 1.15)
+    unit: string;
+    inStock: number;
+    pricingTiers?: PricingTier[];
+    isActive?: boolean;
     createdAt: Date;
     updatedAt: Date;
 }

@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* 1. Load HeroUI Plugin */
+@plugin "../../hero.ts";
+
+/* 2. Configure Source Paths for HeroUI Components */
+@source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+
+/* 3. Global Reset & Theme Variables */
+@theme {
+  /* Semantic Colors for SignageERP */
+  --color-bg-app: var(--bg-app);
+  --color-bg-card: var(--bg-card);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-brand-primary: var(--brand-primary);
+}
+
+/* 4. Root Variables (Core Palette) */
+:root {
+  /* Default Light Mode */
+  --bg-app: #f8fafc;        /* Slate 50 */
+  --bg-card: #ffffff;       /* White */
+  --text-main: #0f172a;     /* Slate 900 */
+  --text-muted: #64748b;    /* Slate 500 */
+  --brand-primary: #2563eb; /* Blue 600 */
+}
+
+/* Dark Mode Overrides */
+/* Note: next-themes adds correct 'dark' class/attribute to html/body */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-app: #020617;        /* Slate 950 */
+    --bg-card: #0f172a;       /* Slate 900 */
+    --text-main: #f1f5f9;     /* Slate 100 */
+    --text-muted: #94a3b8;    /* Slate 400 */
+    --brand-primary: #3b82f6; /* Blue 500 */
+  }
+}
+
+/* Explicit Dark Class (for toggle support) */
+.dark {
+  --bg-app: #020617;
+  --bg-card: #0f172a;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --brand-primary: #3b82f6;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-sans), sans-serif;
+  min-height: 100vh;
+}

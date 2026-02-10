@@ -17,16 +17,20 @@
 
 ### ✅ ใช้ Workflows (Skills) สำหรับงานซ้ำๆ
 
-**เรามีสร้าง Skills ไว้แล้ว:**
+**เรามีสร้าง Workflows ไว้แล้ว:**
 - `/dev` - Start development servers
-- `/prisma` - Database migrations
+- `/prisma` - Database migrations workflow
 - `/crud-api` - Generate CRUD endpoints
+- `/git` - Git commit conventions
+- `/testing` - Testing standards (สำคัญสำหรับ financial code!)
 
 **วิธีใช้:**
 ```
 พิมพ์: /dev      → Start all dev servers
 พิมพ์: /prisma   → Database workflow guide
 พิมพ์: /crud-api → CRUD pattern template
+พิมพ์: /git      → Git commit best practices
+พิมพ์: /testing  → Testing requirements
 ```
 
 ### 🎯 สร้าง Workflow ใหม่เมื่อ:
@@ -92,12 +96,12 @@ description: Deploy to Vercel
 ```
 SignageERP/
 ├── apps/
-│   ├── web/          → "frontend" or "Next.js app"
-│   └── api/          → "backend" or "NestJS API"
+│   ├── web/          → "frontend", "Next.js + HeroUI"
+│   └── api/          → "backend", "NestJS + Prisma"
 ├── packages/
-│   └── types/        → "shared types" or "domain models"
+│   └── types/        → "shared types", "domain models"
 └── .agent/
-    └── workflows/    → "skills" or "workflows"
+    └── workflows/    → "workflows", "skills"
 ```
 
 **ใช้คำที่ชัดเจน:**
@@ -143,29 +147,37 @@ AI: "SQLite for local dev, PostgreSQL for production"
 
 ## 5. Performance Tips
 
-### ⚡ การใช้งานที่ประหยัด RAM (สำหรับเครื่อง 8GB)
+### ⚡ การใช้งานที่ประหยัด RAM (สำหรับเครื่องที่แรมน้อย)
 
-#### ✅ **DO:**
-- Use SQLite สำหรับ local development (ไม่ต้อง Docker)
-- ปิด VS Code terminal/output panels ที่ไม่ใช้
-- Run แค่ service ที่ต้องใช้:
+#### ✅ **DO: แนะนำสำหรับแรมน้อย**
+- ✅ **ใช้ Cloud Database** (Neon.tech / Supabase) - **ไม่กินแรมเครื่องเลย!** ⭐
+- ✅ ปิด VS Code terminal/output panels ที่ไม่ใช้
+- ✅ Run แค่ service ที่ต้องใช้:
   ```bash
   # แทนที่จะ run ทั้งหมด
+  cd apps/web && npm run dev  # แค่ frontend (ถ้า API ยังไม่พร้อม)
+  # หรือ
   cd apps/api && npm run dev  # แค่ backend
   ```
+- ✅ ใช้ browser แบบประหยัดแรม (ปิด extensions ที่ไม่จำเป็น)
+- ✅ Close unused applications
 
-#### ❌ **DON'T:**
-- ❌ Run Docker PostgreSQL + Redis + Nginx พร้อมกัน
+#### ❌ **DON'T: หลีกเลี่ยงถ้าแรมน้อย**
+- ❌ **Run Docker PostgreSQL** (กินแรม ~200-500MB)
+- ❌ Run multiple dev servers พร้อมกัน (ถ้าไม่จำเป็น)
 - ❌ เปิด browser tabs เยอะๆ ระหว่าง dev
 - ❌ Run production build ขณะ dev
+- ❌ เปิด Prisma Studio ค้างไว้ตลอด
 
 ### 🛠️ Memory Optimization Checklist:
 
-- [ ] ใช้ **SQLite** แทน Docker PostgreSQL
+- [ ] ใช้ **Cloud Database** (Neon/Supabase) แทน local PostgreSQL ⭐ แนะนำ!
 - [ ] เปิดเฉพาะ **dev server ที่ใช้**
 - [ ] Close browser DevTools เมื่อไม่ใช้
+- [ ] Close unused VS Code extensions
 - [ ] Restart IDE ทุกๆ 2-3 ชั่วโมง
 - [ ] Kill orphan Node processes: `taskkill /F /IM node.exe`
+- [ ] Monitor RAM usage: Task Manager → Performance tab
 
 ---
 
@@ -180,8 +192,7 @@ cd apps/api && npm run dev     # Backend only
 cd apps/web && npm run dev     # Frontend only
 
 # Database
-cd apps/api
-npx prisma migrate dev         # Create migration
+cd apps/ap prisma migrate dev         # Create migration
 npx prisma studio              # View database
 npx prisma generate            # Generate client
 
@@ -198,9 +209,11 @@ git push                       # Push to GitHub
 ### Slash Commands (Workflows)
 
 ```
-/dev       - Start development servers
-/prisma    - Database workflow
+/dev       - Start development servers (web + api)
+/prisma    - Database migrations workflow
 /crud-api  - CRUD endpoint pattern
+/git       - Git commit conventions
+/testing   - Testing standards (financial code)
 ```
 **Remember:** Git is your safety net. Commit often, push regularly! 🚀
 
@@ -343,8 +356,9 @@ AI: *Reads from task.md*
 3. ✅ ใช้ **Workflows** (`/dev`, `/prisma`, `/crud-api`, `/git`, `/testing`)
 4. ✅ อัพเดท **Artifacts** (`task.md`) บ่อยๆ
 5. ✅ สื่อสาร **ชัดเจน** กับ AI
-6. ✅ ใช้ **SQLite** เพื่อประหยัด RAM
-7. ✅ **Batch** งานที่คล้ายกัน
-8. ✅ เก็บ conversation **โฟกัส** 1 feature
+6. ✅ ใช้ **Cloud Database** (Neon/Supabase) เพื่อประหยัด RAM ⭐ NEW!
+7. ✅ ใช้ **HeroUI v2.8.0** สำหรับ UI components
+8. ✅ **Batch** งานที่คล้ายกัน
+9. ✅ เก็บ conversation **โฟกัส** 1 feature
 
 **เมื่อสงสัย → ถาม AI เลย! 🚀**
