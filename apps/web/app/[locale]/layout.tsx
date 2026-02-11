@@ -46,7 +46,7 @@ export default async function RootLayout(props: {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="dark">
+    <html lang={locale} className="dark" suppressHydrationWarning>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Providers>
