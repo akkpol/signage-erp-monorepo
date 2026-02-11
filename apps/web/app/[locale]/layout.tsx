@@ -21,6 +21,9 @@ export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'th' }, { locale: 'mm' }];
 }
 
+import Sidebar from "@/components/layout/Sidebar";
+import TopBar from "@/components/layout/TopBar";
+
 export default async function RootLayout(props: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
@@ -39,9 +42,25 @@ export default async function RootLayout(props: {
   return (
     <html lang={locale} className="dark">
       <body className={inter.className}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages} locale={locale}>
           <Providers>
-            {children}
+            <div className="flex min-h-screen bg-app overflow-hidden">
+              <Sidebar locale={locale} />
+
+              <main className="flex-1 ml-64 p-6 relative flex flex-col h-screen overflow-hidden">
+                {/* Background glow effects */}
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-magenta-500/10 blur-[120px] rounded-full pointer-events-none" />
+
+                <TopBar locale={locale} />
+
+                <div className="relative z-10 glass rounded-3xl flex-1 p-6 shadow-2xl border border-white/5 overflow-hidden">
+                  <div className="h-full overflow-y-auto scrollbar-hide">
+                    {children}
+                  </div>
+                </div>
+              </main>
+            </div>
           </Providers>
         </NextIntlClientProvider>
       </body>

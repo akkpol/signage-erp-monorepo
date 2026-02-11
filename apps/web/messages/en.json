@@ -1,4 +1,45 @@
 {
+    "Navigation": {
+        "dashboard": "Dashboard",
+        "stock": "Stock",
+        "pricing": "Pricing",
+        "orders": "Orders",
+        "quotations": "Quotations",
+        "invoices": "Invoices",
+        "settings": "Settings"
+    },
+    "Orders": {
+        "title": "Order Management",
+        "newOrder": "New Order",
+        "orderNumber": "Order No.",
+        "customer": "Customer",
+        "status": "Status",
+        "amount": "Amount",
+        "date": "Date",
+        "actions": "Actions",
+        "createQuotation": "Create Quotation",
+        "createInvoice": "Create Invoice",
+        "markAsPaid": "Mark as Paid",
+        "status_NEW": "New Order",
+        "status_DESIGNING": "Designing",
+        "status_PENDING_APPROVAL": "Pending Approval",
+        "status_PRODUCTION": "In Production",
+        "status_INSTALLATION": "Installing",
+        "status_DELIVERED": "Delivered",
+        "status_DONE": "Completed"
+    },
+    "Accounting": {
+        "quotations": "Quotations",
+        "newQuotation": "New Quotation",
+        "invoices": "Invoices",
+        "number": "Number",
+        "customer": "Customer",
+        "total": "Total",
+        "status": "Status",
+        "date": "Date",
+        "actions": "Actions",
+        "noQuotations": "No quotations found"
+    },
     "common": {
         "save": "Save",
         "cancel": "Cancel",
@@ -23,6 +64,7 @@
         "pendingOrders": "Pending Orders",
         "todaySales": "Today's Sales",
         "pendingJobs": "Pending Jobs",
+        "urgentJobs": "Urgent Jobs",
         "createQuote": "Create Quote",
         "manageStock": "Check Stock",
         "viewKanban": "View Production"
@@ -48,19 +90,6 @@
         "notifications": "Notifications",
         "language": "Language",
         "theme": "Theme"
-    },
-    "Orders": {
-        "title": "Order Management",
-        "newOrder": "New Order",
-        "orderNumber": "Order No.",
-        "customer": "Customer",
-        "status": "Status",
-        "amount": "Amount",
-        "date": "Date",
-        "actions": "Actions",
-        "createQuotation": "Create Quotation",
-        "createInvoice": "Create Invoice",
-        "markAsPaid": "Mark as Paid"
     },
     "Stock": {
         "title": "Stock Management",

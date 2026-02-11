@@ -1,7 +1,6 @@
-'use client';
-
 import { Card, CardBody } from "@heroui/react";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface StatsCardProps {
     title: string;
@@ -9,9 +8,10 @@ interface StatsCardProps {
     trend?: number; // percentage (positive, negative, or 0)
     icon: React.ReactNode;
     color?: "primary" | "success" | "warning" | "danger";
+    className?: string;
 }
 
-export default function StatsCard({ title, value, trend, icon, color = "primary" }: StatsCardProps) {
+export default function StatsCard({ title, value, trend, icon, color = "primary", className }: StatsCardProps) {
     const isPositive = trend && trend > 0;
     const isNegative = trend && trend < 0;
 
@@ -23,7 +23,7 @@ export default function StatsCard({ title, value, trend, icon, color = "primary"
     };
 
     return (
-        <Card className="border-none shadow-sm hover:shadow-md transition-all bg-[var(--bg-card)]">
+        <Card className={cn("border-none shadow-sm hover:shadow-md transition-all bg-[var(--bg-card)]", className)}>
             <CardBody className="flex flex-row items-center gap-4 p-4">
                 <div className={`p-3 rounded-xl ${colorMap[color]}`}>
                     {icon}

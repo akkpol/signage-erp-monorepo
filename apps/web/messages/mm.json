@@ -1,4 +1,32 @@
 {
+    "Navigation": {
+        "dashboard": "ဒက်ရှ်ဘုတ်",
+        "stock": "စတော့ခ်",
+        "pricing": "ဈေးနှုန်း",
+        "orders": "အော်ဒါများ",
+        "quotations": "ဈေးနှုန်းအဆိုပြုလွှာ",
+        "invoices": "အင်ဗွိုက်စ်",
+        "settings": "ဆက်တင်များ"
+    },
+    "Orders": {
+        "title": "အော်ဒါစီမံခန့်ခွဲမှု",
+        "newOrder": "အော်ဒါအသစ်",
+        "status_NEW": "အော်ဒါအသစ်",
+        "status_DESIGNING": "ဒီဇိုင်းဆွဲနေဆဲ",
+        "status_PENDING_APPROVAL": "အတည်ပြုချက်စောင့်ဆိုင်းဆဲ",
+        "status_PRODUCTION": "ထုတ်လုပ်နေဆဲ",
+        "status_INSTALLATION": "တပ်ဆင်နေဆဲ",
+        "status_DELIVERED": "ပို့ဆောင်ပြီး",
+        "status_DONE": "ပြီးစီးသည်"
+    },
+    "Accounting": {
+        "quotations": "ဈေးနှုန်းအဆိုပြုလွှာများ",
+        "newQuotation": "ဈေးနှုန်းအဆိုပြုလွှာအသစ်",
+        "invoices": "အင်ဗွိုက်စ်များ",
+        "customer": "ဖောက်သည်",
+        "total": "စုစုပေါင်း",
+        "status": "အခြေအနေ"
+    },
     "Dashboard": {
         "title": "SignageERP",
         "welcome": "Welcome back, Boss",
@@ -6,29 +34,24 @@
         "todayOverview": "ယနေ့အကျဉ်းချုပ်",
         "totalSales": "စုစုပေါင်းအရောင်း",
         "pendingOrders": "လက်ကျန်အော်ဒါများ",
-        "menu": {
-            "newQuote": "Quote အသစ်",
-            "newQuoteDesc": "စျေးနှုန်းတွက်ချက်ရန်",
-            "orders": "အော်ဒါများ",
-            "ordersDesc": "အလုပ်အခြေအနေကြည့်ရန်",
-            "customers": "ဖောက်သည်များ",
-            "customersDesc": "ဖောက်သည်စာရင်း",
-            "products": "ကုန်ပစ္စည်းများ",
-            "productsDesc": "စျေးနှုန်းပြင်ရန်"
-        }
+        "todaySales": "ယနေ့အရောင်း",
+        "pendingJobs": "လက်ကျန်အလုပ်များ",
+        "urgentJobs": "အရေးပေါ်အလုပ်များ"
     },
     "Quote": {
-        "title": "အမြန်စျေးနှုန်း",
-        "subtitle": "ဆိုင်းဘုတ်စျေးနှုန်းတွက်ချက်ရန်",
-        "sectionDimensions": "အရွယ်အစားနှင့် ပစ္စည်း",
-        "width": "အကျယ် (မီတာ)",
-        "height": "အမြင့် (မီတာ)",
-        "materialPrice": "ပစ္စည်းစျေးနှုန်း (sqm)",
-        "laborCost": "လက်ခနှင့် တပ်ဆင်ခ",
-        "estimatedPrice": "ခန့်မှန်းစျေးနှုန်း",
-        "createOrder": "အော်ဒါဖွင့်ရန်",
-        "printQuote": "Quote ထုတ်ရန်",
-        "jobsToday": "ယနေ့အလုပ်များ",
-        "pending": "လက်ကျန်"
+        "title": "ဈေးနှုန်းအဆိုပြုလွှာ",
+        "create": "အဆိုပြုလွှာအသစ်ပြုလုပ်ရန်",
+        "customer": "ဖောက်သည်",
+        "items": "ပစ္စည်းများ",
+        "total": "စုစုပေါင်း",
+        "status": "အခြေအနေ"
+    },
+    "common": {
+        "save": "သိမ်းဆည်းရန်",
+        "cancel": "ပယ်ဖျက်ရန်",
+        "delete": "ဖျက်ရန်",
+        "edit": "ပြင်ဆင်ရန်",
+        "add": "ပေါင်းထည့်ရန်",
+        "confirm": "အတည်ပြုရန်"
     }
 }

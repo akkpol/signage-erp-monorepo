@@ -1,4 +1,45 @@
 {
+    "Navigation": {
+        "dashboard": "แดชบอร์ด",
+        "stock": "จัดการสต็อก",
+        "pricing": "คำนวณราคา",
+        "orders": "จัดการออเดอร์",
+        "quotations": "ใบเสนอราคา",
+        "invoices": "ใบแจ้งหนี้",
+        "settings": "ตั้งค่า"
+    },
+    "Orders": {
+        "title": "จัดการออเดอร์",
+        "newOrder": "ออเดอร์ใหม่",
+        "orderNumber": "เลขที่ออเดอร์",
+        "customer": "ลูกค้า",
+        "status": "สถานะ",
+        "amount": "ยอดรวม",
+        "date": "วันที่",
+        "actions": "จัดการ",
+        "createQuotation": "สร้างใบเสนอราคา",
+        "createInvoice": "สร้างใบแจ้งหนี้",
+        "markAsPaid": "ทำเครื่องหมายว่าจ่ายแล้ว",
+        "status_NEW": "ออเดอร์ใหม่",
+        "status_DESIGNING": "กำลังออกแบบ",
+        "status_PENDING_APPROVAL": "รออนุมัติ",
+        "status_PRODUCTION": "กำลังผลิต",
+        "status_INSTALLATION": "กำลังติดตั้ง",
+        "status_DELIVERED": "ส่งงานแล้ว",
+        "status_DONE": "เสร็จสิ้น"
+    },
+    "Accounting": {
+        "quotations": "รายการใบเสนอราคา",
+        "newQuotation": "สร้างใบเสนอราคา",
+        "invoices": "รายการใบแจ้งหนี้",
+        "number": "เลขที่",
+        "customer": "ลูกค้า",
+        "total": "ยอดรวม",
+        "status": "สถานะ",
+        "date": "วันที่",
+        "actions": "จัดการ",
+        "noQuotations": "ไม่พบข้อมูลใบเสนอราคา"
+    },
     "common": {
         "save": "บันทึก",
         "cancel": "ยกเลิก",
@@ -23,7 +64,8 @@
         "pendingOrders": "ออเดอร์ค้างส่ง",
         "todaySales": "ยอดขายวันนี้",
         "pendingJobs": "งานค้าง",
-        "createQuote": "สร้างใบเสมอราคา",
+        "urgentJobs": "งานด่วน",
+        "createQuote": "สร้างใบเสนอราคา",
         "manageStock": "เช็คสต็อก",
         "viewKanban": "ดูงานผลิต"
     },
@@ -48,19 +90,6 @@
         "notifications": "การแจ้งเตือน",
         "language": "ภาษา",
         "theme": "ธีม"
-    },
-    "Orders": {
-        "title": "จัดการออเดอร์",
-        "newOrder": "ออเดอร์ใหม่",
-        "orderNumber": "เลขที่ออเดอร์",
-        "customer": "ลูกค้า",
-        "status": "สถานะ",
-        "amount": "ยอดรวม",
-        "date": "วันที่",
-        "actions": "จัดการ",
-        "createQuotation": "สร้างใบเสนอราคา",
-        "createInvoice": "สร้างใบแจ้งหนี้",
-        "markAsPaid": "ทำเครื่องหมายว่าจ่ายแล้ว"
     },
     "Stock": {
         "title": "จัดการสต็อก",

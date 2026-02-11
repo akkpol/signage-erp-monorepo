@@ -15,37 +15,47 @@ export default function JobRadar() {
     const totalActive = 12 + 4 + 8 + 2;
 
     return (
-        <Card className="w-full bg-[var(--bg-card)] border-none shadow-sm">
-            <CardBody className="p-6">
-                <h3 className="text-lg font-bold text-[var(--text-main)] mb-4 flex items-center gap-2">
-                    🏭 Job Radar <span className="text-xs font-normal text-[var(--text-muted)]">(Active: {totalActive})</span>
-                </h3>
+        <Card className="glass-card border-white/5 bg-white/5 overflow-hidden">
+            <CardBody className="p-8">
+                <header className="flex justify-between items-center mb-8">
+                    <h3 className="text-sm font-extrabold text-white uppercase tracking-widest flex items-center gap-3">
+                        <span className="w-1.5 h-6 bg-cyan-500 rounded-full" />
+                        Production Radar
+                    </h3>
+                    <Chip size="sm" variant="flat" className="bg-cyan-500/10 text-cyan-400 font-bold border border-cyan-500/20">
+                        Active: {totalActive}
+                    </Chip>
+                </header>
 
                 {/* Visual Pipeline */}
-                <div className="flex justify-between items-center relative mb-8">
+                <div className="flex justify-between items-center relative mb-10 px-4">
                     {/* Connecting Line */}
-                    <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 dark:bg-gray-800 -z-0 rounded-full" />
+                    <div className="absolute top-[20px] left-0 w-full h-[2px] bg-white/5 border-t border-dashed border-white/10 -z-0" />
 
                     {stages.map((stage) => (
                         <div key={stage.id} className="relative z-10 flex flex-col items-center group cursor-pointer">
-                            <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-[var(--bg-app)] border-2 border-${stage.color === 'primary' ? 'blue' : stage.color === 'warning' ? 'orange' : stage.color === 'danger' ? 'red' : stage.color === 'secondary' ? 'purple' : 'green'}-500 shadow-lg transition-transform hover:scale-110`}>
-                                <div className={`text-${stage.color === 'primary' ? 'blue' : stage.color === 'warning' ? 'orange' : stage.color === 'danger' ? 'red' : stage.color === 'secondary' ? 'purple' : 'green'}-500`}>
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gray-900 border border-white/10 shadow-2xl transition-all duration-300 group-hover:border-${stage.color === 'primary' ? 'blue' : stage.color === 'warning' ? 'orange' : stage.color === 'danger' ? 'red' : stage.color === 'secondary' ? 'purple' : 'green'}-500/50 group-hover:scale-110`}>
+                                <div className={`text-${stage.color === 'primary' ? 'blue' : stage.color === 'warning' ? 'orange' : stage.color === 'danger' ? 'red' : stage.color === 'secondary' ? 'purple' : 'green'}-400`}>
                                     {stage.icon}
                                 </div>
                             </div>
-                            <div className="mt-2 text-center">
-                                <p className="text-xs font-semibold text-[var(--text-muted)] group-hover:text-[var(--text-main)] transition-colors">{stage.label}</p>
-                                <Chip size="sm" variant="flat" color={stage.color as any} className="mt-1 h-5 min-h-5 text-[10px]">
+                            <div className="mt-4 text-center">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter group-hover:text-white transition-colors">{stage.label}</p>
+                                <div className="mt-1 font-extrabold text-white text-lg">
                                     {stage.count}
-                                </Chip>
+                                </div>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* List of "Action Required" items could go here */}
-                <div className="bg-[var(--bg-app)] rounded-xl p-4">
-                    <p className="text-xs text-[var(--text-muted)] text-center">Select a stage above to view details</p>
+                {/* Status Bar */}
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex items-center justify-between">
+                    <div className="flex gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                        <span className="text-[10px] font-bold text-gray-400 uppercase">System Optimal</span>
+                    </div>
+                    <span className="text-[10px] font-mono text-cyan-500/50">NODE-042-PRODUCTION</span>
                 </div>
             </CardBody>
         </Card>

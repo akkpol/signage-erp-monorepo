@@ -1,8 +1,7 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma, TransactionType } from '@signage-erp/database'
 import { revalidatePath } from 'next/cache'
-import { TransactionType } from '@prisma/client'
 
 export type StockTransactionData = {
     materialId: string

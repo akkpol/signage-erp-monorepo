@@ -50,12 +50,22 @@ test('Full Feature Demo: Stock -> Pricing -> Order -> Kanban', async ({ page }) 
     await expect(page.getByText('JOB-')).toBeVisible();
 
     // 4. Kanban Drag & Drop (Simulation)
-    // Playwright drag and drop
+    // Kanban Drag & Drop to DONE
     const card = page.locator('.touch-none').first();
-    const designingColumn = page.locator('#DESIGNING');
-
-    await card.dragTo(designingColumn);
-
-    // Wait to see movement
+    const doneColumn = page.locator('#DONE');
+    await card.dragTo(doneColumn);
     await page.waitForTimeout(1000);
+
+    // Generate Invoice from Kanban
+    await page.getByRole('button', { name: 'Generate Invoice' }).click();
+    await page.waitForURL('**/accounting/invoices');
+    await expect(page.getByText('INV-')).toBeVisible();
+
+    // Quotation Management
+    await page.goto('http://localhost:3000/th/accounting/quotations');
+    await page.getByRole('button', { name: 'สร้างใบเสนอราคา' }).click();
+    await page.getByPlaceholder('เลือกวัสดุ').first().click();
+    await page.getByRole('option').first().click();
+    await page.getByRole('button', { name: 'บันทึกเป็นใบเสนอราคา' }).click();
+    await expect(page.getByText('QT-')).toBeVisible();
 });

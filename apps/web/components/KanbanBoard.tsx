@@ -116,12 +116,17 @@ export default function KanbanBoard({ initialOrders }: { initialOrders: any[] })
             onDragOver={handleDragOver}
             onDragEnd={handleDragEnd}
         >
-            <div className="flex gap-4 overflow-x-auto pb-4 h-[calc(100vh-200px)]">
+            <div className="flex gap-6 overflow-x-auto pb-6 h-[calc(100vh-180px)] scrollbar-hide">
                 {COLUMNS.map(col => (
-                    <div key={col.id} className="min-w-[280px] bg-gray-900/50 rounded-xl p-4 flex flex-col gap-3">
-                        <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-bold text-gray-300">{col.title}</h3>
-                            <Chip size="sm" color={col.color as any} variant="flat">
+                    <div key={col.id} className="min-w-[320px] glass-card p-5 flex flex-col gap-4 border-white/5 bg-white/5 backdrop-blur-sm">
+                        <div className="flex items-center justify-between px-1">
+                            <h3 className="font-extrabold text-white text-sm uppercase tracking-widest">{col.title}</h3>
+                            <Chip
+                                size="sm"
+                                variant="flat"
+                                color={col.color as any}
+                                className="bg-opacity-20 font-bold border border-current"
+                            >
                                 {orders.filter(o => o.status === col.id).length}
                             </Chip>
                         </div>
@@ -130,13 +135,16 @@ export default function KanbanBoard({ initialOrders }: { initialOrders: any[] })
                             items={orders.filter(o => o.status === col.id).map(o => o.id)}
                             strategy={verticalListSortingStrategy}
                         >
-                            <div className="flex-1 flex flex-col gap-3 min-h-[100px]" id={col.id}>
+                            <div className="flex-1 flex flex-col gap-4 min-h-[100px]" id={col.id}>
                                 {orders.filter(o => o.status === col.id).map(order => (
                                     <SortableOrderCard key={order.id} order={order} />
                                 ))}
                                 {orders.filter(o => o.status === col.id).length === 0 && (
-                                    <div className="h-full border-2 border-dashed border-gray-800 rounded-lg flex items-center justify-center text-gray-600 text-sm">
-                                        Drop here
+                                    <div className="flex-1 border-2 border-dashed border-white/5 rounded-2xl flex flex-col items-center justify-center text-gray-600 text-[10px] uppercase font-bold tracking-tighter opacity-50">
+                                        <div className="w-8 h-8 rounded-full border border-current flex items-center justify-center mb-2">
+                                            +
+                                        </div>
+                                        Drag Job Here
                                     </div>
                                 )}
                             </div>
@@ -154,10 +162,13 @@ export default function KanbanBoard({ initialOrders }: { initialOrders: any[] })
     );
 }
 
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { createInvoiceFromOrder } from '@/actions/accounting';
+import { FilePlus } from 'lucide-react';
+import { Button } from '@heroui/react';
+import { useRouter } from 'next/navigation';
 
 function SortableOrderCard({ order, isOverlay }: { order: Order, isOverlay?: boolean }) {
+    const router = useRouter();
     const {
         attributes,
         listeners,
@@ -172,15 +183,37 @@ function SortableOrderCard({ order, isOverlay }: { order: Order, isOverlay?: boo
         opacity: isOverlay ? 0.8 : 1,
     };
 
+    const handleCreateInvoice = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const res = await createInvoiceFromOrder(order.id);
+        if (res.success) {
+            router.push(`/[locale]/accounting/invoices`);
+        }
+    };
+
     return (
         <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="touch-none">
-            <Card className={`bg-gray-800 border-gray-700 ${isOverlay ? 'shadow-2xl ring-2 ring-blue-500 cursor-grabbing' : 'hover:bg-gray-750 cursor-grab'}`}>
-                <CardBody className="p-3">
-                    <div className="flex justify-between items-start mb-2">
-                        <span className="text-xs font-mono text-gray-400">{order.orderNumber}</span>
-                        <span className="text-xs font-bold text-green-400">฿{order.grandTotal.toLocaleString()}</span>
+            <Card className={`bg-gray-800/80 backdrop-blur-md border-white/5 ${isOverlay ? 'shadow-2xl ring-2 ring-cyan-500 cursor-grabbing' : 'hover:bg-gray-800 cursor-grab'} transition-all`}>
+                <CardBody className="p-4">
+                    <div className="flex justify-between items-start mb-3">
+                        <span className="text-[10px] font-bold font-mono text-cyan-500 bg-cyan-500/10 px-2 py-0.5 rounded-full">{order.orderNumber}</span>
+                        <span className="text-sm font-extrabold text-white">฿{order.grandTotal.toLocaleString()}</span>
                     </div>
-                    <p className="font-semibold text-white text-sm mb-1">{order.customer?.name || 'Walk-in'}</p>
+                    <p className="font-bold text-white text-base mb-4">{order.customer?.name || 'Walk-in'}</p>
+
+                    {order.status === OrderStatus.DONE && (
+                        <Button
+                            size="sm"
+                            color="secondary"
+                            variant="flat"
+                            className="w-full bg-magenta-500/10 text-magenta-400 font-bold border border-magenta-500/20"
+                            startContent={<FilePlus size={16} />}
+                            onClick={handleCreateInvoice}
+                        >
+                            Generate Invoice
+                        </Button>
+                    )}
                 </CardBody>
             </Card>
         </div>

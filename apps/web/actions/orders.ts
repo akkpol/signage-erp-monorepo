@@ -1,8 +1,7 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma, OrderStatus, OrderPriority } from '@signage-erp/database'
 import { revalidatePath } from 'next/cache'
-import { OrderStatus, OrderPriority } from '@prisma/client'
 
 export async function getOrders() {
     try {

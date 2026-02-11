@@ -39,10 +39,13 @@ model Organization {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  customers Customer[]
-  products  Product[]
-  materials Material[]
-  orders    Order[]
+  customers  Customer[]
+  products   Product[]
+  materials  Material[]
+  orders     Order[]
+  quotations Quotation[]
+  invoices   Invoice[]
+  payments   Payment[]
 }
 
 // Customers
@@ -57,9 +60,11 @@ model Customer {
   address String?
   taxId   String?
 
-  orders    Order[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  orders     Order[]
+  quotations Quotation[]
+  invoices   Invoice[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
 }
 
 // Products (Base templates like "Vinyl Sticker", "Lightbox")
@@ -112,6 +117,14 @@ model PricingTier {
   updatedAt DateTime @updatedAt
 }
 
+enum DocumentStatus {
+  DRAFT
+  SENT
+  PARTIAL
+  PAID
+  VOID
+}
+
 // Orders
 model Order {
   id             String       @id @default(uuid())
@@ -129,7 +142,8 @@ model Order {
   vatAmount   Float @default(0)
   grandTotal  Float @default(0)
 
-  items OrderItem[]
+  items    OrderItem[]
+  invoices Invoice[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -150,18 +164,126 @@ model OrderItem {
   totalPrice Float
 
   details String? // Store selected material, finishing options, etc. (JSON stringified)
+
+  designFiles DesignFile[]
+}
+
+// Quotations
+model Quotation {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  quotationNumber String // Human readable: QT-2402001
+  status         DocumentStatus @default(DRAFT)
+
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+
+  totalAmount Float @default(0)
+  vatAmount   Float @default(0)
+  grandTotal  Float @default(0)
+
+  items QuotationItem[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  expiresAt DateTime?
+}
+
+model QuotationItem {
+  id          String    @id @default(uuid())
+  quotationId String
+  quotation   Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+
+  name     String
+  width    Float?
+  height   Float?
+  quantity Int    @default(1)
+
+  unitPrice  Float
+  totalPrice Float
+
+  details String?
+}
+
+// Invoices
+model Invoice {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  invoiceNumber String // Human readable: INV-2402001
+  status        DocumentStatus @default(DRAFT)
+
+  orderId String?
+  order   Order?  @relation(fields: [orderId], references: [id])
+
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+
+  totalAmount Float @default(0)
+  vatAmount   Float @default(0)
+  grandTotal  Float @default(0)
+  amountPaid  Float @default(0)
+
+  payments Payment[]
+
+  dueDate   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// Payments
+model Payment {
+  id             String       @id @default(uuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  invoiceId String
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+
+  amount        Float
+  paymentMethod String // CASH, TRANSFER, CREDIT_CARD
+  reference     String? // Bank ref or slip info
+  paymentDate   DateTime @default(now())
+
+  createdAt DateTime @default(now())
 }
 
 // Design Files
 model DesignFile {
-  id      String @id @default(uuid())
-  orderId String
+  id             String   @id @default(uuid())
+  organizationId String
+  // organization   Organization @relation(fields: [organizationId], references: [id])
 
-  fileName String
-  fileUrl  String
-  fileType String
+  orderItemId    String
+  orderItem      OrderItem @relation(fields: [orderItemId], references: [id])
 
+  fileName       String
+  externalLink   String?
+  version        Int      @default(1)
+  status         String   @default("draft")
+
+  uploadedById   String
+  uploadedBy     User     @relation(fields: [uploadedById], references: [id])
+
+  notes          String?
+  tags           String[]
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model User {
+  id    String @id @default(uuid())
+  name  String
+  email String @unique
+
+  designFiles DesignFile[]
+  
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // Stock Management
