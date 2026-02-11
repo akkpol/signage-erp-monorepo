@@ -199,11 +199,14 @@ export interface Quote {
  * สถานะใบสั่งงาน (Order Status)
  */
 export enum OrderStatus {
-    PENDING = 'PENDING',         // รอดำเนินการ
-    IN_PRODUCTION = 'IN_PRODUCTION', // กำลังผลิต
-    COMPLETED = 'COMPLETED',     // เสร็จแล้ว
-    DELIVERED = 'DELIVERED',     // ส่งมอบแล้ว
-    CANCELLED = 'CANCELLED',     // ยกเลิก
+    NEW = 'NEW',
+    PENDING_APPROVAL = 'PENDING_APPROVAL',
+    DESIGNING = 'DESIGNING',
+    PRODUCTION = 'PRODUCTION',
+    INSTALLATION = 'INSTALLATION',
+    DELIVERED = 'DELIVERED',
+    DONE = 'DONE',
+    CANCELLED = 'CANCELLED',
 }
 
 /**

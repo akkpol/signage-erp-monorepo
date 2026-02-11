@@ -4,9 +4,13 @@
         "**/.env.*local"
     ],
     "pipeline": {
+        "generate": {
+            "cache": false
+        },
         "build": {
             "dependsOn": [
-                "^build"
+                "^build",
+                "^generate"
             ],
             "outputs": [
                 ".next/**",
@@ -16,7 +20,10 @@
         },
         "dev": {
             "cache": false,
-            "persistent": true
+            "persistent": true,
+            "dependsOn": [
+                "^generate"
+            ]
         },
         "lint": {
             "dependsOn": [

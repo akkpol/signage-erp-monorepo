@@ -1,3 +1,0 @@
-# Supabase Database Connection
-DATABASE_URL="postgresql://postgres.pucxyzgjwkkkbgwbjxuy:%40dminPrintflw@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?pgbouncer=true"
-DIRECT_URL="postgresql://postgres:%40dminPrintflw@db.pucxyzgjwkkkbgwbjxuy.supabase.co:5432/postgres"

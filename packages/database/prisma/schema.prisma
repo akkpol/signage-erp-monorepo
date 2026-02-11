@@ -136,7 +136,7 @@ model Order {
   customerId String?
   customer   Customer? @relation(fields: [customerId], references: [id])
 
-  status String @default("DRAFT") // DRAFT, QUOTED, CONFIRMED, DESIGNING, PRODUCTION, INSTALLATION, COMPLETED, CANCELLED
+  status String @default("NEW") // NEW, PENDING_APPROVAL, DESIGNING, PRODUCTION, INSTALLATION, DELIVERED, DONE, CANCELLED
 
   totalAmount Float @default(0)
   vatAmount   Float @default(0)

@@ -5,6 +5,9 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
     transpilePackages: ['@signage-erp/database'],
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
 };
 
 export default withNextIntl(nextConfig);

@@ -1,11 +1,13 @@
 'use client';
 
+import { CSS } from '@dnd-kit/utilities';
+
 import { useState } from 'react';
 import { DndContext, DragOverlay, closestCorners, KeyboardSensor, PointerSensor, useSensor, useSensors, DragStartEvent, DragOverEvent, DragEndEvent } from '@dnd-kit/core';
-import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { Card, CardBody, Chip } from '@heroui/react';
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
+import { Card, CardBody, Chip, Button } from '@heroui/react';
 import { updateOrderStatus } from '@/actions/orders';
-import { OrderStatus } from '@prisma/client';
+import { OrderStatus } from '@signage-erp/types';
 
 // Types
 type Order = {
@@ -124,7 +126,7 @@ export default function KanbanBoard({ initialOrders }: { initialOrders: any[] })
                             <Chip
                                 size="sm"
                                 variant="flat"
-                                color={col.color as any}
+                                color={col.color as "primary" | "secondary" | "success" | "warning" | "danger"}
                                 className="bg-opacity-20 font-bold border border-current"
                             >
                                 {orders.filter(o => o.status === col.id).length}
@@ -164,7 +166,6 @@ export default function KanbanBoard({ initialOrders }: { initialOrders: any[] })
 
 import { createInvoiceFromOrder } from '@/actions/accounting';
 import { FilePlus } from 'lucide-react';
-import { Button } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 
 function SortableOrderCard({ order, isOverlay }: { order: Order, isOverlay?: boolean }) {
@@ -177,8 +178,10 @@ function SortableOrderCard({ order, isOverlay }: { order: Order, isOverlay?: boo
         transition,
     } = useSortable({ id: order.id });
 
+
+
     const style = {
-        transform: CSS.Transform.toString(transform),
+        transform: CSS.Translate.toString(transform),
         transition,
         opacity: isOverlay ? 0.8 : 1,
     };

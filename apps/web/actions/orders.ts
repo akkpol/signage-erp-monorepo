@@ -1,6 +1,7 @@
 'use server'
 
-import { prisma, OrderStatus, OrderPriority } from '@signage-erp/database'
+import { prisma } from '@signage-erp/database'
+import { OrderStatus } from '@signage-erp/types'
 import { revalidatePath } from 'next/cache'
 
 export async function getOrders() {
@@ -64,7 +65,6 @@ export async function createOrder(data: any) {
                         data: {
                             name: 'Walk-in',
                             organizationId: org.id,
-                            email: 'walkin@example.com', // Dummy
                             phone: '000-000-0000'
                         }
                     });
@@ -80,7 +80,7 @@ export async function createOrder(data: any) {
                 organizationId: org.id,
                 customerId: customerId, // Fixed: customerId is required in updated schema
                 status: OrderStatus.NEW,
-                priority: OrderPriority.NORMAL,
+                // priority: OrderPriority.NORMAL, // Removed as not in schema
                 orderNumber: `JOB-${Date.now().toString().slice(-6)}`,
                 totalAmount: data.totalAmount,
                 vatAmount: 0, // Todo: heavy math later

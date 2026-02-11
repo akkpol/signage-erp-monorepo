@@ -1,6 +1,6 @@
 import { getQuotations } from "@/actions/accounting";
 import { getMaterials } from "@/actions/stock"; // Re-using existing action
-import { prisma } from "@/lib/prisma"; // Direct prisma for customers for now
+import { prisma } from "@signage-erp/database"; // Direct prisma for customers for now
 import QuotationList from "@/components/accounting/QuotationList";
 import { getTranslations } from "next-intl/server";
 
