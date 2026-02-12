@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
-/* 1. Load HeroUI Plugin */
+/* HeroUI v3 Setup */
 @plugin "../../hero.ts";
-
-/* 2. Configure Source Paths for HeroUI Components */
 @source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+
+
 
 /* 3. Global Reset & Theme Variables */
 @theme {
@@ -20,16 +20,21 @@
 
 /* 4. Root Variables (Core Palette) */
 :root {
-  --bg-app: #020617;        /* Deep Slate 950 */
-  --bg-card: #0f172a;       /* Slate 900 */
-  --text-main: #f1f5f9;     /* Slate 100 */
-  --text-muted: #94a3b8;    /* Slate 400 */
-  --brand-primary: #00f2ff; /* Cyber Cyan */
+  --bg-app: #020617;
+  /* Deep Slate 950 */
+  --bg-card: #0f172a;
+  /* Slate 900 */
+  --text-main: #f1f5f9;
+  /* Slate 100 */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
+  --brand-primary: #00f2ff;
+  /* Cyber Cyan */
 }
 
 body {
   background-color: var(--bg-app);
-  background-image: 
+  background-image:
     radial-gradient(circle at 0% 0%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 100% 100%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
   color: var(--text-main);
@@ -64,13 +69,16 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--brand-primary);
 }

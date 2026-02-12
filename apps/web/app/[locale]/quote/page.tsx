@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, CardBody, CardHeader, Input, Button, Divider, Spacer } from '@heroui/react';
+import { Card, Input, Button, Separator } from '@heroui/react';
 import { Calculator, ShoppingCart, Printer } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -42,15 +42,15 @@ export default function QuotePage() {
                 </div>
 
                 <Card className="bg-gray-800/50 border border-gray-700/50 backdrop-blur-xl shadow-2xl">
-                    <CardHeader className="flex flex-col gap-1 px-6 pt-6 pb-0">
+                    <Card.Header className="flex flex-col gap-1 px-6 pt-6 pb-0">
                         <h2 className="text-lg font-semibold text-gray-200">{t('sectionDimensions')}</h2>
-                    </CardHeader>
-                    <CardBody className="gap-4 px-6 py-6">
+                    </Card.Header>
+                    <Card.Content className="flex flex-col gap-4 px-6 py-6">
                         <div className="flex gap-4">
                             <Input
                                 type="number"
-                                label={t('width')}
-                                placeholder="0.00"
+                                label={width ? t('width') : undefined}
+                                placeholder={t('width')}
                                 value={width}
                                 onValueChange={setWidth}
                                 variant="bordered"
@@ -62,8 +62,8 @@ export default function QuotePage() {
                             />
                             <Input
                                 type="number"
-                                label={t('height')}
-                                placeholder="0.00"
+                                label={height ? t('height') : undefined}
+                                placeholder={t('height')}
                                 value={height}
                                 onValueChange={setHeight}
                                 variant="bordered"
@@ -77,7 +77,8 @@ export default function QuotePage() {
 
                         <Input
                             type="number"
-                            label={t('materialPrice')}
+                            label={materialPrice ? t('materialPrice') : undefined}
+                            placeholder={t('materialPrice')}
                             value={materialPrice}
                             onValueChange={setMaterialPrice}
                             variant="bordered"
@@ -90,7 +91,8 @@ export default function QuotePage() {
 
                         <Input
                             type="number"
-                            label={t('laborCost')}
+                            label={laborCost ? t('laborCost') : undefined}
+                            placeholder={t('laborCost')}
                             value={laborCost}
                             onValueChange={setLaborCost}
                             variant="bordered"
@@ -101,7 +103,7 @@ export default function QuotePage() {
                             }}
                         />
 
-                        <Divider className="my-2 bg-gray-700" />
+                        <Separator className="my-2 bg-gray-700" />
 
                         <div className="flex flex-col gap-1 items-end">
                             <span className="text-gray-400 text-sm">{t('estimatedPrice')}</span>
@@ -110,28 +112,30 @@ export default function QuotePage() {
                             </span>
                         </div>
 
-                        <Spacer y={4} />
+                        <div className="h-4" /> {/* Replacing Spacer */}
 
                         <div className="flex gap-3">
                             <Button
                                 color="primary"
                                 size="lg"
                                 className="flex-1 font-semibold shadow-lg shadow-blue-500/20"
-                                startContent={<ShoppingCart size={20} />}
+                                onPress={() => { }} /* Using onPress instead of onClick in v3 */
                             >
+                                <ShoppingCart size={20} className="mr-2" />
                                 {t('createOrder')}
                             </Button>
                             <Button
                                 color="secondary"
-                                variant="flat"
+                                variant="outline"
                                 size="lg"
                                 className="flex-1 font-semibold"
-                                startContent={<Printer size={20} />}
+                                onPress={() => { }}
                             >
+                                <Printer size={20} className="mr-2" />
                                 {t('printQuote')}
                             </Button>
                         </div>
-                    </CardBody>
+                    </Card.Content>
                 </Card>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">

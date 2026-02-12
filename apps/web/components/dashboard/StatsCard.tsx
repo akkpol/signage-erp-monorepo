@@ -1,4 +1,4 @@
-import { Card, CardBody } from "@heroui/react";
+import { Card } from "@heroui/react";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +24,7 @@ export default function StatsCard({ title, value, trend, icon, color = "primary"
 
     return (
         <Card className={cn("border-none shadow-sm hover:shadow-md transition-all bg-[var(--bg-card)]", className)}>
-            <CardBody className="flex flex-row items-center gap-4 p-4">
+            <Card.Content className="flex flex-row items-center gap-4 p-4">
                 <div className={`p-3 rounded-xl ${colorMap[color]}`}>
                     {icon}
                 </div>
@@ -40,7 +40,7 @@ export default function StatsCard({ title, value, trend, icon, color = "primary"
                         )}
                     </div>
                 </div>
-            </CardBody>
+            </Card.Content>
         </Card>
     );
 }

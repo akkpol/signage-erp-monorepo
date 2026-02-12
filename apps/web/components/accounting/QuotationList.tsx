@@ -2,19 +2,9 @@
 
 import { useState } from 'react';
 import {
-    Table,
-    TableHeader,
-    TableColumn,
-    TableBody,
-    TableRow,
-    TableCell,
     Button,
     Chip,
-    Dropdown,
-    DropdownTrigger,
-    DropdownMenu,
-    DropdownItem,
-    useDisclosure
+    Dropdown
 } from "@heroui/react";
 import { Plus, MoreVertical, FileText, Send, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -31,7 +21,7 @@ export default function QuotationList({
     customers: any[];
 }) {
     const t = useTranslations('Accounting');
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <div className="flex flex-col gap-6">
@@ -42,64 +32,72 @@ export default function QuotationList({
                 </div>
                 <Button
                     color="primary"
-                    startContent={<Plus size={20} />}
-                    className="bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20"
-                    onClick={onOpen}
+                    className="bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20 font-bold"
+                    onPress={() => setIsModalOpen(true)}
                 >
+                    <Plus size={20} className="mr-2" />
                     {t('newQuotation')}
                 </Button>
             </div>
 
             <div className="glass-card overflow-hidden">
-                <Table aria-label="Quotations Table" shadow="none" className="bg-transparent">
-                    <TableHeader>
-                        <TableColumn className="bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider">{t('number')}</TableColumn>
-                        <TableColumn className="bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider">{t('customer')}</TableColumn>
-                        <TableColumn className="bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider">{t('total')}</TableColumn>
-                        <TableColumn className="bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider">{t('status')}</TableColumn>
-                        <TableColumn className="bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider">{t('date')}</TableColumn>
-                        <TableColumn className="bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider text-right">{t('actions')}</TableColumn>
-                    </TableHeader>
-                    <TableBody emptyContent={t('noQuotations')}>
-                        {initialQuotations.map((qt) => (
-                            <TableRow key={qt.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                                <TableCell className="font-mono text-cyan-400 font-bold">{qt.quotationNumber}</TableCell>
-                                <TableCell className="text-white font-medium">{qt.customer?.name || '-'}</TableCell>
-                                <TableCell className="text-white flex flex-col">
-                                    <span className="text-xs text-gray-400">฿</span>
-                                    <span className="font-bold">{qt.grandTotal.toLocaleString()}</span>
-                                </TableCell>
-                                <TableCell>
-                                    <StatusChip status={qt.status} />
-                                </TableCell>
-                                <TableCell className="text-gray-400 text-sm">
-                                    {format(new Date(qt.createdAt), 'dd MMM yyyy')}
-                                </TableCell>
-                                <TableCell className="text-right">
-                                    <Dropdown backdrop="blur" className="glass border border-white/10">
-                                        <DropdownTrigger>
-                                            <Button isIconOnly variant="light" size="sm" className="text-gray-400 hover:text-white">
-                                                <MoreVertical size={18} />
-                                            </Button>
-                                        </DropdownTrigger>
-                                        <DropdownMenu aria-label="Quotation Actions">
-                                            <DropdownItem key="view" startContent={<FileText size={16} />}>View Details</DropdownItem>
-                                            <DropdownItem key="send" startContent={<Send size={16} />}>Email to Customer</DropdownItem>
-                                            <DropdownItem key="delete" className="text-danger" color="danger" startContent={<Trash2 size={16} />}>
-                                                Delete
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </Dropdown>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                {/* Custom Header Grid */}
+                <div className="grid grid-cols-6 gap-4 p-4 bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider border-b border-white/10">
+                    <div>{t('number')}</div>
+                    <div>{t('customer')}</div>
+                    <div>{t('total')}</div>
+                    <div>{t('status')}</div>
+                    <div>{t('date')}</div>
+                    <div className="text-right">{t('actions')}</div>
+                </div>
+
+                {/* Body Grid */}
+                <div className="flex flex-col">
+                    {initialQuotations.length === 0 && (
+                        <div className="p-8 text-center text-gray-500">ไม่พบข้อมูลใบเสนอราคา</div>
+                    )}
+                    {initialQuotations.map((qt) => (
+                        <div key={qt.id} className="grid grid-cols-6 gap-4 p-4 items-center border-b border-white/5 hover:bg-white/5 transition-colors">
+                            <div className="font-mono text-cyan-400 font-bold">{qt.quotationNumber}</div>
+                            <div className="text-white font-medium truncate">{qt.customer?.name || '-'}</div>
+                            <div className="text-white flex flex-col">
+                                <span className="text-[10px] text-gray-500 uppercase tracking-tighter">Budget</span>
+                                <span className="font-bold">฿{qt.grandTotal.toLocaleString()}</span>
+                            </div>
+                            <div>
+                                <StatusChip status={qt.status} />
+                            </div>
+                            <div className="text-gray-400 text-sm font-mono">
+                                {format(new Date(qt.createdAt), 'dd/MM/yy')}
+                            </div>
+                            <div className="text-right">
+                                <Dropdown className="glass border border-white/10">
+                                    <Dropdown.Trigger>
+                                        <Button isIconOnly variant="flat" size="sm" className="text-gray-400 hover:text-white">
+                                            <MoreVertical size={18} />
+                                        </Button>
+                                    </Dropdown.Trigger>
+                                    <Dropdown.Menu aria-label="Quotation Actions">
+                                        <Dropdown.Item key="view">
+                                            <div className="flex items-center gap-2"><FileText size={16} /> View Details</div>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item key="send">
+                                            <div className="flex items-center gap-2"><Send size={16} /> Email to Customer</div>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item key="delete" className="text-danger">
+                                            <div className="flex items-center gap-2 font-bold"><Trash2 size={16} /> Delete</div>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <QuotationModal
-                isOpen={isOpen}
-                onClose={onClose}
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
                 materials={materials}
                 customers={customers}
             />

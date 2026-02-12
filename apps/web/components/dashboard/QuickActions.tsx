@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardBody } from "@heroui/react";
+import { Card } from "@heroui/react";
 import { Plus, PenTool, FilePlus } from "lucide-react";
 import { useRouter } from "../../navigation";
 
@@ -17,19 +17,20 @@ export default function QuickActions() {
     return (
         <div className="grid grid-cols-2 gap-4">
             {actions.map((action) => (
-                <Card
+                <div
                     key={action.title}
-                    isPressable
-                    onPress={() => router.push(action.path)}
-                    className="glass-card border-white/5 bg-white/5 hover:bg-white/10 hover:translate-y-[-4px] transition-all duration-300"
+                    onClick={() => router.push(action.path)}
+                    className="cursor-pointer group"
                 >
-                    <CardBody className="flex flex-col items-center justify-center p-6 gap-3 text-center">
-                        <div className={`p-4 rounded-2xl shadow-xl border ${action.color}`}>
-                            {action.icon}
-                        </div>
-                        <span className="text-xs font-bold text-white uppercase tracking-widest">{action.title}</span>
-                    </CardBody>
-                </Card>
+                    <Card className="glass-card border-white/5 bg-white/5 group-hover:bg-white/10 group-hover:translate-y-[-4px] transition-all duration-300">
+                        <Card.Content className="flex flex-col items-center justify-center p-6 gap-3 text-center">
+                            <div className={`p-4 rounded-2xl shadow-xl border ${action.color}`}>
+                                {action.icon}
+                            </div>
+                            <span className="text-xs font-bold text-white uppercase tracking-widest">{action.title}</span>
+                        </Card.Content>
+                    </Card>
+                </div>
             ))}
         </div>
     );

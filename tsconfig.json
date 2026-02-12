@@ -6,8 +6,8 @@
             "DOM",
             "DOM.Iterable"
         ],
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
+        "module": "esnext",
+        "moduleResolution": "bundler",
         "esModuleInterop": true,
         "skipLibCheck": true,
         "strict": true,
