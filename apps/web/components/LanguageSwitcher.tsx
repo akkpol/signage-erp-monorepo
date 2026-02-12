@@ -2,7 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '../navigation';
-import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@heroui/react";
+import { Button, Dropdown, Label } from "@heroui/react";
 
 export default function LanguageSwitcher() {
     const locale = useLocale();
@@ -21,19 +21,27 @@ export default function LanguageSwitcher() {
 
     return (
         <Dropdown>
-            <DropdownTrigger>
-                <Button variant="flat" className="min-w-[80px]">
+            <Dropdown.Trigger>
+                <Button variant="secondary" className="min-w-[80px]">
                     {languages[locale as keyof typeof languages]}
                 </Button>
-            </DropdownTrigger>
-            <DropdownMenu
-                aria-label="Language Selection"
-                onAction={(key) => handleSelect(key as string)}
-            >
-                <DropdownItem key="th">ไทย</DropdownItem>
-                <DropdownItem key="en">English</DropdownItem>
-                <DropdownItem key="mm">မြန်မာ</DropdownItem>
-            </DropdownMenu>
+            </Dropdown.Trigger>
+            <Dropdown.Popover className="glass border border-white/10">
+                <Dropdown.Menu
+                    aria-label="Language Selection"
+                    onAction={(key) => handleSelect(key as string)}
+                >
+                    <Dropdown.Item id="th" textValue="ไทย">
+                        <Label>ไทย</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item id="en" textValue="English">
+                        <Label>English</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item id="mm" textValue="မြန်မာ">
+                        <Label>မြန်မာ</Label>
+                    </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown.Popover>
         </Dropdown>
     );
 }

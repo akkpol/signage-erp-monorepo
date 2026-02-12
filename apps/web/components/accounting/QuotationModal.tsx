@@ -2,16 +2,17 @@
 
 import { useState, useMemo } from 'react';
 import {
-    Modal,
+    Modal as HeroModal,
     Button,
     Input,
     Select,
     ListBox,
-    Separator
+    Separator,
+    Label
 } from "@heroui/react";
 import { Plus, Trash2, Calculator } from "lucide-react";
 import { createQuotation } from "@/actions/accounting";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 
 export default function QuotationModal({
     isOpen,
@@ -31,7 +32,7 @@ export default function QuotationModal({
     ]);
 
     const addItem = () => {
-        setItems([...items, { id: Math.random().toString(), name: '', materialId: '', width: 1, height: 1, quantity: 1, unitPrice: 0, totalPrice: 0 }]);
+        setItems([...items, { id: crypto.randomUUID(), name: '', materialId: '', width: 1, height: 1, quantity: 1, unitPrice: 0, totalPrice: 0 }]);
     };
 
     const removeItem = (id: string) => {
@@ -81,28 +82,29 @@ export default function QuotationModal({
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <Modal.Backdrop />
-            <Modal.Container>
-                <Modal.Dialog className="glass border border-white/10 text-white max-w-4xl w-full">
-                    <Modal.Header className="border-b border-white/5 p-6">
-                        <Modal.Heading className="text-xl font-bold">สร้างใบเสนอราคาใหม่</ModalHeading>
-                    </Modal.Header>
-                    <Modal.Body className="py-6 px-6 space-y-6 max-h-[70vh] overflow-y-auto">
+        <HeroModal>
+            <HeroModal.Backdrop isOpen={isOpen} onOpenChange={(open) => !open && onClose()} />
+            <HeroModal.Container>
+                <HeroModal.Dialog className="glass border border-white/10 text-white max-w-4xl w-full">
+                    <HeroModal.Header className="border-b border-white/5 p-6">
+                        <h3 className="text-xl font-bold">สร้างใบเสนอราคาใหม่</h3>
+                    </HeroModal.Header>
+                    <HeroModal.Body className="py-6 px-6 space-y-6 max-h-[70vh] overflow-y-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <Select
-                                label="เลือกลูกค้า"
                                 placeholder="ค้นหาชื่อลูกค้า"
-                                variant="bordered"
-                                onSelectionChange={(keys) => setSelectedCustomerId(Array.from(keys)[0] as string)}
+                                variant="secondary"
+                                onSelectionChange={(key) => setSelectedCustomerId(key as string)}
                             >
+                                <Label>เลือกลูกค้า</Label>
                                 <Select.Trigger>
                                     <Select.Value />
+                                    <Select.Indicator />
                                 </Select.Trigger>
                                 <Select.Popover>
                                     <ListBox>
                                         {customers.map(c => (
-                                            <ListBox.Item key={c.id}>{c.name}</ListBox.Item>
+                                            <ListBox.Item id={c.id} key={c.id} textValue={c.name}>{c.name}</ListBox.Item>
                                         ))}
                                     </ListBox>
                                 </Select.Popover>
@@ -115,7 +117,7 @@ export default function QuotationModal({
                                     <Calculator size={18} className="text-cyan-400" />
                                     รายการสินค้า
                                 </h3>
-                                <Button size="sm" variant="flat" color="primary" onPress={addItem}>
+                                <Button size="sm" variant="primary" onPress={addItem}>
                                     <Plus size={16} className="mr-2" />
                                     เพิ่มรายการ
                                 </Button>
@@ -128,18 +130,19 @@ export default function QuotationModal({
                                         <div className="flex-1 min-w-[200px]">
                                             <label className="text-[10px] uppercase font-bold text-gray-400 mb-1 block">วัสดุ / ชื่อรายการ</label>
                                             <Select
-                                                size="sm"
                                                 placeholder="เลือกวัสดุ"
-                                                variant="flat"
-                                                onSelectionChange={(keys) => updateItem(item.id, 'materialId', Array.from(keys)[0])}
+                                                variant="secondary"
+                                                onSelectionChange={(key) => updateItem(item.id, 'materialId', key as string)}
                                             >
+                                                <Label>วัสดุ / ชื่อรายการ</Label>
                                                 <Select.Trigger>
                                                     <Select.Value />
+                                                    <Select.Indicator />
                                                 </Select.Trigger>
                                                 <Select.Popover>
                                                     <ListBox>
                                                         {materials.map(m => (
-                                                            <ListBox.Item key={m.id}>{m.name}</ListBox.Item>
+                                                            <ListBox.Item id={m.id} key={m.id} textValue={m.name}>{m.name}</ListBox.Item>
                                                         ))}
                                                     </ListBox>
                                                 </Select.Popover>
@@ -148,31 +151,31 @@ export default function QuotationModal({
                                         <div className="w-24">
                                             <label className="text-[10px] uppercase font-bold text-gray-400 mb-1 block">กว้าง (ม.)</label>
                                             <Input
-                                                size="sm"
+                                                className="h-8"
                                                 type="number"
                                                 value={String(item.width)}
-                                                onValueChange={(val) => updateItem(item.id, 'width', val)}
-                                                variant="flat"
+                                                onChange={(e) => updateItem(item.id, 'width', e.target.value)}
+                                                variant="secondary"
                                             />
                                         </div>
                                         <div className="w-24">
                                             <label className="text-[10px] uppercase font-bold text-gray-400 mb-1 block">สูง (ม.)</label>
                                             <Input
-                                                size="sm"
+                                                className="h-8"
                                                 type="number"
                                                 value={String(item.height)}
-                                                onValueChange={(val) => updateItem(item.id, 'height', val)}
-                                                variant="flat"
+                                                onChange={(e) => updateItem(item.id, 'height', e.target.value)}
+                                                variant="secondary"
                                             />
                                         </div>
                                         <div className="w-20">
                                             <label className="text-[10px] uppercase font-bold text-gray-400 mb-1 block">จำนวน</label>
                                             <Input
-                                                size="sm"
+                                                className="h-8"
                                                 type="number"
                                                 value={String(item.quantity)}
-                                                onValueChange={(val) => updateItem(item.id, 'quantity', val)}
-                                                variant="flat"
+                                                onChange={(e) => updateItem(item.id, 'quantity', e.target.value)}
+                                                variant="secondary"
                                             />
                                         </div>
                                         <div className="flex-none text-right min-w-[100px] pb-2">
@@ -180,7 +183,7 @@ export default function QuotationModal({
                                             <span className="font-bold text-cyan-400 block">{item.totalPrice.toLocaleString()}</span>
                                         </div>
                                         <div className="pb-1">
-                                            <Button isIconOnly size="sm" color="danger" variant="light" onPress={() => removeItem(item.id)}>
+                                            <Button isIconOnly size="sm" variant="danger" onPress={() => removeItem(item.id)}>
                                                 <Trash2 size={16} />
                                             </Button>
                                         </div>
@@ -188,23 +191,21 @@ export default function QuotationModal({
                                 ))}
                             </div>
                         </div>
-                    </Modal.Body>
-                    <Modal.Footer className="border-t border-white/5 bg-white/5 p-6 rounded-b-3xl">
+                    </HeroModal.Body>
+                    <HeroModal.Footer className="border-t border-white/5 bg-white/5 p-6 rounded-b-3xl">
                         <div className="flex-1 flex items-center justify-start text-lg font-bold">
                             <span className="text-gray-400 mr-2">ยอดรวมทั้งหมด:</span>
                             <span className="text-cyan-400">฿ {grandTotal.toLocaleString()}</span>
                         </div>
                         <div className="flex gap-3">
-                            <Button variant="flat" onPress={onClose}>ยกเลิก</Button>
-                            <Button color="primary" className="bg-gradient-to-r from-cyan-500 to-blue-600 font-bold shadow-lg shadow-cyan-500/20" onPress={handleSave}>
+                            <Button variant="secondary" onPress={onClose}>ยกเลิก</Button>
+                            <Button variant="primary" onPress={handleSave}>
                                 บันทึกเป็นใบเสนอราคา
                             </Button>
                         </div>
-                    </Modal.Footer>
-                </Modal.Dialog>
-            </Modal.Container>
-        </Modal>
-    );
-}
+                    </HeroModal.Footer>
+                </HeroModal.Dialog>
+            </HeroModal.Container>
+        </HeroModal>
     );
 }

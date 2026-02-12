@@ -2,14 +2,15 @@
 
 import { useState, useMemo } from 'react';
 import {
+    TextField,
+    Label,
     Input,
+    InputGroup,
     Select,
-    SelectItem,
+    ListBox,
     Button,
     Card,
-    CardBody,
-    CardHeader,
-    Divider,
+    Separator,
     Chip
 } from '@heroui/react';
 import { useTranslations } from 'next-intl';
@@ -50,17 +51,11 @@ export default function PricingCalculator({ materials }: { materials: Material[]
         if (isNaN(w) || isNaN(h) || isNaN(qty)) return null;
 
         // Convert cm to meters for area calculation (assuming price is per sqm)
-        // If unit is different, logic might need adjustment, but standard is sqm
         const areaPerItem = (w / 100) * (h / 100);
         const totalArea = areaPerItem * qty;
 
         // Base Price
         const basePrice = totalArea * selectedMaterial.sellingPrice;
-
-        // Check Discount Logic
-        // Discount based on QUANTITY or TOTAL AREA?
-        // Usually quantity for pieces, but could be area.
-        // Let's assume quantity for now as per schema (minQuantity)
 
         // Sort tiers by minQuantity desc to find best match
         const tiers = [...(selectedMaterial.pricingTiers || [])].sort((a, b) => b.minQuantity - a.minQuantity);
@@ -83,55 +78,67 @@ export default function PricingCalculator({ materials }: { materials: Material[]
 
     return (
         <Card className="max-w-md mx-auto w-full">
-            <CardHeader className="flex gap-3">
+            <Card.Header className="flex gap-3">
                 <div className="flex flex-col">
                     <p className="text-md font-bold">{t('calculator')}</p>
                     <p className="text-small text-default-500">{t('title')}</p>
                 </div>
-            </CardHeader>
-            <Divider />
-            <CardBody className="gap-4">
-                <Select
-                    label={t('selectMaterial')}
-                    placeholder={t('selectMaterial')}
-                    selectedKeys={selectedMaterialId ? [selectedMaterialId] : []}
-                    onChange={(e) => setSelectedMaterialId(e.target.value)}
-                >
-                    {materials.map((m) => (
-                        <SelectItem key={m.id} value={m.id} textValue={m.name}>
-                            {m.name} ({m.sellingPrice} / {m.unit})
-                        </SelectItem>
-                    ))}
-                </Select>
-
-                <div className="flex gap-2">
-                    <Input
-                        type="number"
-                        label={t('width')}
-                        placeholder="0"
-                        endContent={<span className="text-default-400 text-small">{t('centimeters')}</span>}
-                        value={width}
-                        onValueChange={setWidth}
-                    />
-                    <Input
-                        type="number"
-                        label={t('height')}
-                        placeholder="0"
-                        endContent={<span className="text-default-400 text-small">{t('centimeters')}</span>}
-                        value={height}
-                        onValueChange={setHeight}
-                    />
+            </Card.Header>
+            <Separator />
+            <Card.Content className="gap-4">
+                <div className="flex flex-col gap-1.5">
+                    <Select
+                        placeholder={t('selectMaterial')}
+                        selectedKey={selectedMaterialId || undefined}
+                        onSelectionChange={(key) => setSelectedMaterialId(key as string)}
+                        variant="secondary"
+                    >
+                        <Label className="text-sm font-medium">{t('selectMaterial')}</Label>
+                        <Select.Trigger>
+                            <Select.Value />
+                        </Select.Trigger>
+                        <Select.Popover>
+                            <ListBox>
+                                {materials.map((m) => (
+                                    <ListBox.Item id={m.id} key={m.id} textValue={m.name}>
+                                        {m.name} ({m.sellingPrice} / {m.unit})
+                                    </ListBox.Item>
+                                ))}
+                            </ListBox>
+                        </Select.Popover>
+                    </Select>
                 </div>
 
-                <Input
-                    type="number"
-                    label={t('quantity')}
-                    placeholder="1"
-                    value={quantity}
-                    onValueChange={setQuantity}
-                />
+                <div className="flex gap-4">
+                    <TextField className="flex-1" type="number" value={width} onChange={setWidth}>
+                        <Label className="text-sm font-medium">{t('width')}</Label>
+                        <InputGroup variant="secondary">
+                            <InputGroup.Input placeholder="0" />
+                            <InputGroup.Suffix>
+                                <span className="text-default-400 text-[10px] font-bold">{t('centimeters')}</span>
+                            </InputGroup.Suffix>
+                        </InputGroup>
+                    </TextField>
 
-                {selectedMaterial && calculation && (
+                    <TextField className="flex-1" type="number" value={height} onChange={setHeight}>
+                        <Label className="text-sm font-medium">{t('height')}</Label>
+                        <InputGroup variant="secondary">
+                            <InputGroup.Input placeholder="0" />
+                            <InputGroup.Suffix>
+                                <span className="text-default-400 text-[10px] font-bold">{t('centimeters')}</span>
+                            </InputGroup.Suffix>
+                        </InputGroup>
+                    </TextField>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                    <TextField type="number" value={quantity} onChange={setQuantity}>
+                        <Label className="text-sm font-medium">{t('quantity')}</Label>
+                        <Input variant="secondary" placeholder="1" />
+                    </TextField>
+                </div>
+
+                {selectedMaterial && calculation ? (
                     <div className="mt-4 bg-default-50 p-4 rounded-lg space-y-2">
                         <div className="flex justify-between text-small text-default-500">
                             <span>{t('dimensions')}</span>
@@ -153,7 +160,7 @@ export default function PricingCalculator({ materials }: { materials: Material[]
                             </div>
                         )}
 
-                        <Divider className="my-2" />
+                        <Separator className="my-2" />
 
                         <div className="flex justify-between items-end">
                             <span className="font-semibold">{t('total')}</span>
@@ -163,20 +170,17 @@ export default function PricingCalculator({ materials }: { materials: Material[]
                         </div>
 
                         {calculation.message && (
-                            <Chip color="success" variant="flat" size="sm" className="w-full text-center">
+                            <Chip color="success" variant="soft" size="sm" className="w-full text-center">
                                 {calculation.message}
                             </Chip>
                         )}
                     </div>
-                )}
-
-                {!selectedMaterial && (
+                ) : (
                     <div className="text-center text-default-400 py-4">
                         {t('noMaterial')}
                     </div>
                 )}
-
-            </CardBody>
+            </Card.Content>
         </Card>
     );
 }

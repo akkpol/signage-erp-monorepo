@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardBody, Progress, Chip } from "@heroui/react";
+import { Card, Chip } from "@heroui/react";
 import { FileText, PenTool, Printer, Truck, CheckCircle } from "lucide-react";
 
 export default function JobRadar() {
@@ -16,13 +16,13 @@ export default function JobRadar() {
 
     return (
         <Card className="glass-card border-white/5 bg-white/5 overflow-hidden">
-            <CardBody className="p-8">
+            <Card.Content className="p-8">
                 <header className="flex justify-between items-center mb-8">
                     <h3 className="text-sm font-extrabold text-white uppercase tracking-widest flex items-center gap-3">
                         <span className="w-1.5 h-6 bg-cyan-500 rounded-full" />
                         Production Radar
                     </h3>
-                    <Chip size="sm" variant="flat" className="bg-cyan-500/10 text-cyan-400 font-bold border border-cyan-500/20">
+                    <Chip size="sm" color="accent" variant="soft" className="bg-cyan-500/10 text-cyan-400 font-bold border border-cyan-500/20">
                         Active: {totalActive}
                     </Chip>
                 </header>
@@ -57,7 +57,7 @@ export default function JobRadar() {
                     </div>
                     <span className="text-[10px] font-mono text-cyan-500/50">NODE-042-PRODUCTION</span>
                 </div>
-            </CardBody>
+            </Card.Content>
         </Card>
     );
 }

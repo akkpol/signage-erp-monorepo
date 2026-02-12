@@ -1,7 +1,6 @@
 import { getOrders, createOrder } from '@/actions/orders';
 import KanbanBoard from '@/components/KanbanBoard';
-import { Button } from '@heroui/react';
-import { Plus } from 'lucide-react';
+import AddOrderButton from '@/components/orders/AddOrderButton';
 import { revalidatePath } from 'next/cache';
 
 export default async function OrdersPage() {
@@ -25,15 +24,7 @@ export default async function OrdersPage() {
                     <h1 className="text-2xl font-bold text-white">Order Management</h1>
                     <p className="text-gray-400 text-sm">Drag and drop to update status</p>
                 </div>
-                <form action={addTestOrder}>
-                    <Button
-                        type="submit"
-                        color="primary"
-                        startContent={<Plus size={20} />}
-                    >
-                        New Order (Test)
-                    </Button>
-                </form>
+                <AddOrderButton action={addTestOrder} />
             </div>
 
             <KanbanBoard initialOrders={orders || []} />

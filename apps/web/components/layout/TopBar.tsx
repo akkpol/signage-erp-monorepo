@@ -1,6 +1,6 @@
 'use client';
 
-import { User } from "@heroui/react";
+import { Avatar } from "@heroui/react";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { usePathname } from 'next/navigation';
@@ -30,20 +30,18 @@ export default function TopBar({ locale }: { locale: string }) {
 
                 <div className="h-8 w-[1px] bg-white/10" />
 
-                <User
-                    name="Akkarapol"
-                    description="Owner"
-                    avatarProps={{
-                        src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-                        isBordered: true,
-                        color: "primary",
-                        className: "w-8 h-8"
-                    }}
-                    classNames={{
-                        name: "text-sm font-bold text-white",
-                        description: "text-[10px] text-cyan-400 font-bold uppercase"
-                    }}
-                />
+                <div className="flex items-center gap-3">
+                    <Avatar
+                        color="accent"
+                        className="w-8 h-8 ring-2 ring-cyan-500"
+                    >
+                        <Avatar.Image src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+                    </Avatar>
+                    <div className="flex flex-col">
+                        <span className="text-sm font-bold text-white">Akkarapol</span>
+                        <span className="text-[10px] text-cyan-400 font-bold uppercase">Owner</span>
+                    </div>
+                </div>
             </div>
         </header>
     );

@@ -1,0 +1,1219 @@
+﻿
+> @signage-erp/web@0.1.0 build
+> next build
+
+   Γû▓ Next.js 15.1.7
+   - Environments: .env
+
+   Creating an optimized production build ...
+node.exe :  ΓÜá Compiled with warnings
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( ΓÜá C 
+   ompiled with warnings:String) [], RemoteExcepti  
+  on
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+./components/KanbanBoard.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/KanbanBoard.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'useDisclosure' is not 
+exported from '@heroui/react' (imported as 
+'useDisclosure').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'ModalContent' is not 
+exported from '@heroui/react' (imported as 
+'ModalContent').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/dashboard/JobRadar.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/dashboard/JobRadar.tsx
+./app/[locale]/page.tsx
+
+./components/dashboard/QuickActions.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/dashboard/QuickActions.tsx
+./app/[locale]/page.tsx
+
+./components/dashboard/StatsCard.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/dashboard/StatsCard.tsx
+./app/[locale]/page.tsx
+
+./components/layout/TopBar.tsx
+Attempted import error: 'User' is not exported from 
+'@heroui/react' (imported as 'User').
+
+Import trace for requested module:
+./components/layout/TopBar.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'Divider' is not exported 
+from '@heroui/react' (imported as 'Divider').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'Divider' is not exported 
+from '@heroui/react' (imported as 'Divider').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'useDisclosure' is not 
+exported from '@heroui/react' (imported as 
+'useDisclosure').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'useDisclosure' is not 
+exported from '@heroui/react' (imported as 
+'useDisclosure').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'ModalContent' is not 
+exported from '@heroui/react' (imported as 
+'ModalContent').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'ModalContent' is not 
+exported from '@heroui/react' (imported as 
+'ModalContent').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/KanbanBoard.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/KanbanBoard.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/InvoiceList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/InvoiceList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'useDisclosure' is not 
+exported from '@heroui/react' (imported as 
+'useDisclosure').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'ModalContent' is not 
+exported from '@heroui/react' (imported as 
+'ModalContent').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/accounting/QuotationModal.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/accounting/QuotationModal.tsx
+./components/accounting/QuotationList.tsx
+
+./components/dashboard/JobRadar.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/dashboard/JobRadar.tsx
+./app/[locale]/page.tsx
+
+./components/dashboard/QuickActions.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/dashboard/QuickActions.tsx
+./app/[locale]/page.tsx
+   Skipping linting
+   Checking validity of types ...
+
+./components/dashboard/StatsCard.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/dashboard/StatsCard.tsx
+./app/[locale]/page.tsx
+
+./components/layout/TopBar.tsx
+Attempted import error: 'User' is not exported from 
+'@heroui/react' (imported as 'User').
+
+Import trace for requested module:
+./components/layout/TopBar.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'Divider' is not exported 
+from '@heroui/react' (imported as 'Divider').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'CardBody' is not exported 
+from '@heroui/react' (imported as 'CardBody').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/pricing/PricingCalculator.tsx
+Attempted import error: 'Divider' is not exported 
+from '@heroui/react' (imported as 'Divider').
+
+Import trace for requested module:
+./components/pricing/PricingCalculator.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'useDisclosure' is not 
+exported from '@heroui/react' (imported as 
+'useDisclosure').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'useDisclosure' is not 
+exported from '@heroui/react' (imported as 
+'useDisclosure').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'Table' is not exported 
+from '@heroui/react' (imported as 'Table').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableHeader' is not 
+exported from '@heroui/react' (imported as 
+'TableHeader').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableColumn' is not 
+exported from '@heroui/react' (imported as 
+'TableColumn').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableBody' is not exported 
+from '@heroui/react' (imported as 'TableBody').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableRow' is not exported 
+from '@heroui/react' (imported as 'TableRow').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'TableCell' is not exported 
+from '@heroui/react' (imported as 'TableCell').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'ModalContent' is not 
+exported from '@heroui/react' (imported as 
+'ModalContent').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'ModalContent' is not 
+exported from '@heroui/react' (imported as 
+'ModalContent').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+./components/stock/MaterialList.tsx
+Attempted import error: 'SelectItem' is not 
+exported from '@heroui/react' (imported as 
+'SelectItem').
+
+Import trace for requested module:
+./components/stock/MaterialList.tsx
+
+Failed to compile.
+
+./app/[locale]/accounting/invoices/page.tsx:1:29
+Type error: Cannot find module 
+'@/actions/accounting' or its corresponding type 
+declarations.
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m 
+[36mimport[39m { getInvoices } [36mfrom[39m 
+[32m"@/actions/accounting"[39m[33m;[39m[0m
+[0m [90m   |[39m                             
+[31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m [36mimport[39m 
+[33mInvoiceList[39m [36mfrom[39m [32m"@/compone
+nts/accounting/InvoiceList"[39m[33m;[39m[0m
+[0m [90m 3 |[39m[0m
+[0m [90m 4 |[39m [36mexport[39m 
+[36mdefault[39m [36masync[39m 
+[36mfunction[39m [33mInvoicesPage[39m() {[0m
+Next.js build worker exited with code: 1 and 
+signal: null
+npm error Lifecycle script `build` failed with 
+error:
+npm error code 1
+npm error path D:\PrintFlowERP\apps\web
+npm error workspace @signage-erp/web@0.1.0
+npm error location D:\PrintFlowERP\apps\web
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s 
+/c next build
+

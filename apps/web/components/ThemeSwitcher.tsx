@@ -18,7 +18,7 @@ export default function ThemeSwitcher() {
     return (
         <Button
             isIconOnly
-            variant="light"
+            variant="tertiary"
             onPress={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             aria-label="Toggle Dark Mode"
         >

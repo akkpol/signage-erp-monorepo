@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, Input, Button, Separator } from '@heroui/react';
+import { Card, Input, Button, Separator, TextField, Label } from '@heroui/react';
 import { Calculator, ShoppingCart, Printer } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -19,7 +19,7 @@ export default function QuotePage() {
         const mat = parseFloat(materialPrice) || 0;
         const labor = parseFloat(laborCost) || 0;
 
-        const area = w * h;
+        const area = (w / 100) * (h / 100); // Assuming cm input, sqm calculation
         const materialCost = area * mat;
         const total = materialCost + labor;
 
@@ -41,94 +41,73 @@ export default function QuotePage() {
                     </div>
                 </div>
 
-                <Card className="bg-gray-800/50 border border-gray-700/50 backdrop-blur-xl shadow-2xl">
+                <Card className="bg-gray-800/50 border border-gray-700/50 backdrop-blur-xl shadow-2xl rounded-3xl overflow-hidden">
                     <Card.Header className="flex flex-col gap-1 px-6 pt-6 pb-0">
                         <h2 className="text-lg font-semibold text-gray-200">{t('sectionDimensions')}</h2>
                     </Card.Header>
                     <Card.Content className="flex flex-col gap-4 px-6 py-6">
                         <div className="flex gap-4">
-                            <Input
-                                type="number"
-                                label={width ? t('width') : undefined}
-                                placeholder={t('width')}
-                                value={width}
-                                onValueChange={setWidth}
-                                variant="bordered"
-                                classNames={{
-                                    inputWrapper: "bg-gray-900/50 border-gray-700 hover:border-gray-500",
-                                    label: "text-gray-400",
-                                    input: "text-white text-lg font-medium"
-                                }}
-                            />
-                            <Input
-                                type="number"
-                                label={height ? t('height') : undefined}
-                                placeholder={t('height')}
-                                value={height}
-                                onValueChange={setHeight}
-                                variant="bordered"
-                                classNames={{
-                                    inputWrapper: "bg-gray-900/50 border-gray-700 hover:border-gray-500",
-                                    label: "text-gray-400",
-                                    input: "text-white text-lg font-medium"
-                                }}
-                            />
+                            <TextField className="flex-1" type="number" value={width} onChange={setWidth}>
+                                <Label className="text-sm font-medium text-gray-400">{t('width')}</Label>
+                                <Input
+                                    placeholder="0"
+                                    variant="secondary"
+                                    className="bg-gray-900/50 rounded-xl"
+                                />
+                            </TextField>
+                            <TextField className="flex-1" type="number" value={height} onChange={setHeight}>
+                                <Label className="text-sm font-medium text-gray-400">{t('height')}</Label>
+                                <Input
+                                    placeholder="0"
+                                    variant="secondary"
+                                    className="bg-gray-900/50 rounded-xl"
+                                />
+                            </TextField>
                         </div>
 
-                        <Input
-                            type="number"
-                            label={materialPrice ? t('materialPrice') : undefined}
-                            placeholder={t('materialPrice')}
-                            value={materialPrice}
-                            onValueChange={setMaterialPrice}
-                            variant="bordered"
-                            classNames={{
-                                inputWrapper: "bg-gray-900/50 border-gray-700 hover:border-gray-500",
-                                label: "text-gray-400",
-                                input: "text-white text-lg font-medium"
-                            }}
-                        />
+                        <TextField type="number" value={materialPrice} onChange={setMaterialPrice}>
+                            <Label className="text-sm font-medium text-gray-400">{t('materialPrice')}</Label>
+                            <Input
+                                placeholder="0"
+                                variant="secondary"
+                                className="bg-gray-900/50 rounded-xl"
+                            />
+                        </TextField>
 
-                        <Input
-                            type="number"
-                            label={laborCost ? t('laborCost') : undefined}
-                            placeholder={t('laborCost')}
-                            value={laborCost}
-                            onValueChange={setLaborCost}
-                            variant="bordered"
-                            classNames={{
-                                inputWrapper: "bg-gray-900/50 border-gray-700 hover:border-gray-500",
-                                label: "text-gray-400",
-                                input: "text-white text-lg font-medium"
-                            }}
-                        />
+                        <TextField type="number" value={laborCost} onChange={setLaborCost}>
+                            <Label className="text-sm font-medium text-gray-400">{t('laborCost')}</Label>
+                            <Input
+                                placeholder="0"
+                                variant="secondary"
+                                className="bg-gray-900/50 rounded-xl"
+                            />
+                        </TextField>
 
-                        <Separator className="my-2 bg-gray-700" />
+                        <Separator className="my-2 bg-gray-700/50" />
 
                         <div className="flex flex-col gap-1 items-end">
-                            <span className="text-gray-400 text-sm">{t('estimatedPrice')}</span>
+                            <span className="text-gray-400 text-xs uppercase font-bold tracking-wider">{t('estimatedPrice')}</span>
                             <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
                                 ฿{totalPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </span>
                         </div>
 
-                        <div className="h-4" /> {/* Replacing Spacer */}
+                        <div className="h-4" />
 
                         <div className="flex gap-3">
                             <Button
-                                color="primary"
+                                variant="primary"
                                 size="lg"
-                                className="flex-1 font-semibold shadow-lg shadow-blue-500/20"
-                                onPress={() => { }} /* Using onPress instead of onClick in v3 */
+                                className="flex-1 font-bold rounded-2xl h-14"
+                                onPress={() => { }}
                             >
                                 <ShoppingCart size={20} className="mr-2" />
                                 {t('createOrder')}
                             </Button>
                             <Button
-                                color="secondary"
-                                variant="outline"
+                                variant="secondary"
                                 size="lg"
-                                className="flex-1 font-semibold"
+                                className="flex-1 font-bold rounded-2xl h-14"
                                 onPress={() => { }}
                             >
                                 <Printer size={20} className="mr-2" />
@@ -139,14 +118,13 @@ export default function QuotePage() {
                 </Card>
 
                 <div className="mt-8 grid grid-cols-2 gap-4">
-                    {/* Quick Stats Placeholder */}
-                    <div className="bg-gray-800/30 p-4 rounded-xl border border-gray-700/30">
-                        <p className="text-gray-400 text-xs uppercase tracking-wider">{t('jobsToday')}</p>
-                        <p className="text-2xl font-bold text-white">12</p>
+                    <div className="bg-gray-800/30 p-4 rounded-2xl border border-gray-700/30 backdrop-blur-md">
+                        <p className="text-gray-400 text-[10px] uppercase font-bold tracking-widest mb-1">{t('jobsToday')}</p>
+                        <p className="text-2xl font-black text-white">12</p>
                     </div>
-                    <div className="bg-gray-800/30 p-4 rounded-xl border border-gray-700/30">
-                        <p className="text-gray-400 text-xs uppercase tracking-wider">{t('pending')}</p>
-                        <p className="text-2xl font-bold text-orange-400">5</p>
+                    <div className="bg-gray-800/30 p-4 rounded-2xl border border-gray-700/30 backdrop-blur-md">
+                        <p className="text-gray-400 text-[10px] uppercase font-bold tracking-widest mb-1">{t('pending')}</p>
+                        <p className="text-2xl font-black text-orange-400">5</p>
                     </div>
                 </div>
             </div>

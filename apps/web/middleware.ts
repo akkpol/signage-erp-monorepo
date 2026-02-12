@@ -15,6 +15,6 @@ export const config = {
         '/',
         '/(th|en|mm)/:path*',
         // Exclude API routes, _next, and static files
-        '/((?!api|_next|_vercel|.*\\..*).*)'
+        '/((?!api|_next|_vercel|404|not-found|.*\\..*).*)'
     ]
 };

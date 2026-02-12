@@ -36,7 +36,10 @@
         "pendingOrders": "လက်ကျန်အော်ဒါများ",
         "todaySales": "ယနေ့အရောင်း",
         "pendingJobs": "လက်ကျန်အလုပ်များ",
-        "urgentJobs": "အရေးပေါ်အလုပ်များ"
+        "urgentJobs": "အရေးပေါ်အလုပ်များ",
+        "createQuote": "Create Quote",
+        "manageStock": "Check Stock",
+        "viewKanban": "View Production"
     },
     "Quote": {
         "title": "ဈေးနှုန်းအဆိုပြုလွှာ",

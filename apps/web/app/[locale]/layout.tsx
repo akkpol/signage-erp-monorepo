@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 export function generateStaticParams() {
@@ -40,6 +40,9 @@ export default async function RootLayout(props: {
   if (!['en', 'th', 'mm'].includes(locale)) {
     notFound();
   }
+
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
 
   // Providing all messages to the client
   // side is the easiest way to get started

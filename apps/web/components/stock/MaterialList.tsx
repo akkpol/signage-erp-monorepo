@@ -2,22 +2,14 @@
 
 import { useState } from 'react';
 import {
-    Table,
-    TableHeader,
-    TableBody,
-    TableColumn,
-    TableRow,
-    TableCell,
     Button,
     Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
     Input,
+    InputGroup,
+    TextField,
+    Label,
     Select,
-    SelectItem,
-    useDisclosure,
+    ListBox,
     Chip,
     Tooltip
 } from '@heroui/react';
@@ -41,15 +33,10 @@ export default function MaterialList({ initialMaterials }: { initialMaterials: M
     const router = useRouter();
 
     // Transaction Modal State
-    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+    const [isTransactionOpen, setIsTransactionOpen] = useState(false);
 
     // Add Material Modal State
-    const {
-        isOpen: isAddOpen,
-        onOpen: onAddOpen,
-        onOpenChange: onAddOpenChange,
-        onClose: onAddClose
-    } = useDisclosure();
+    const [isAddOpen, setIsAddOpen] = useState(false);
 
     const [materials, setMaterials] = useState<Material[]>(initialMaterials);
     const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
@@ -70,23 +57,13 @@ export default function MaterialList({ initialMaterials }: { initialMaterials: M
         sellingPrice: ''
     });
 
-    const columns = [
-        { name: t('name'), uid: 'name' },
-        { name: t('type'), uid: 'type' },
-        { name: t('cost'), uid: 'costPrice' },
-        { name: t('selling'), uid: 'sellingPrice' },
-        { name: t('balance'), uid: 'inStock' },
-        { name: t('unit'), uid: 'unit' },
-        { name: t('actions'), uid: 'actions' },
-    ];
-
     const handleAction = (material: Material, type: 'STOCK_IN' | 'STOCK_OUT' | 'ADJUSTMENT') => {
         setSelectedMaterial(material);
         setTransactionType(type);
         setQuantity('');
         setReference('');
         setNotes('');
-        onOpen();
+        setIsTransactionOpen(true);
     };
 
     const handleSubmitTransaction = async () => {
@@ -103,7 +80,7 @@ export default function MaterialList({ initialMaterials }: { initialMaterials: M
             });
 
             if (result.success) {
-                onClose();
+                setIsTransactionOpen(false);
                 router.refresh();
             } else {
                 alert(result.error);
@@ -123,14 +100,14 @@ export default function MaterialList({ initialMaterials }: { initialMaterials: M
         try {
             const result = await createMaterial({
                 name: newMaterial.name,
-                type: newMaterial.type, // Explicitly cast if needed, but string works with API
+                type: newMaterial.type,
                 unit: newMaterial.unit,
                 costPrice: parseFloat(newMaterial.costPrice),
                 sellingPrice: parseFloat(newMaterial.sellingPrice)
             });
 
             if (result.success) {
-                onAddClose();
+                setIsAddOpen(false);
                 setNewMaterial({ name: '', type: 'VINYL', unit: 'sqm', costPrice: '', sellingPrice: '' });
                 router.refresh();
             } else {
@@ -144,199 +121,195 @@ export default function MaterialList({ initialMaterials }: { initialMaterials: M
         }
     };
 
-    const renderCell = (material: Material, columnKey: React.Key) => {
-        const cellValue = material[columnKey as keyof Material];
-
-        switch (columnKey) {
-            case 'costPrice':
-            case 'sellingPrice':
-                return `฿${Number(cellValue).toLocaleString()}`;
-            case 'inStock':
-                return (
-                    <Chip
-                        color={Number(cellValue) <= 10 ? 'danger' : Number(cellValue) <= 50 ? 'warning' : 'success'}
-                        variant="flat"
-                        size="sm"
-                    >
-                        {Number(cellValue).toLocaleString()}
-                    </Chip>
-                );
-            case 'actions':
-                return (
-                    <div className="flex gap-2">
-                        <Tooltip content={t('stockIn')}>
-                            <Button
-                                isIconOnly
-                                size="sm"
-                                color="success"
-                                variant="light"
-                                onPress={() => handleAction(material, 'STOCK_IN')}
-                            >
-                                📥
-                            </Button>
-                        </Tooltip>
-                        <Tooltip content={t('stockOut')}>
-                            <Button
-                                isIconOnly
-                                size="sm"
-                                color="danger"
-                                variant="light"
-                                onPress={() => handleAction(material, 'STOCK_OUT')}
-                            >
-                                📤
-                            </Button>
-                        </Tooltip>
-                        <Tooltip content={t('adjust')}>
-                            <Button
-                                isIconOnly
-                                size="sm"
-                                color="default"
-                                variant="light"
-                                onPress={() => handleAction(material, 'ADJUSTMENT')}
-                            >
-                                🔧
-                            </Button>
-                        </Tooltip>
-                    </div>
-                );
-            default:
-                return cellValue;
-        }
-    };
-
     return (
         <>
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold">{t('title')}</h2>
-                <Button color="primary" onPress={onAddOpen}>
+                <Button variant="primary" onPress={() => setIsAddOpen(true)}>
                     {t('addMaterial')}
                 </Button>
             </div>
 
-            <Table aria-label="Materials table">
-                <TableHeader columns={columns}>
-                    {(column) => (
-                        <TableColumn key={column.uid} align={column.uid === 'actions' ? 'end' : 'start'}>
-                            {column.name}
-                        </TableColumn>
-                    )}
-                </TableHeader>
-                <TableBody items={materials}>
-                    {(item) => (
-                        <TableRow key={item.id}>
-                            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                        </TableRow>
-                    )}
-                </TableBody>
-            </Table>
+            <div className="glass-card overflow-hidden">
+                {/* Header Grid */}
+                <div className="grid grid-cols-7 gap-4 p-4 bg-white/5 text-gray-300 font-bold uppercase text-[10px] tracking-wider border-b border-white/10">
+                    <div className="col-span-2">{t('name')}</div>
+                    <div>{t('type')}</div>
+                    <div>{t('cost')}</div>
+                    <div>{t('selling')}</div>
+                    <div>{t('balance')}</div>
+                    <div>{t('unit')}</div>
+                    <div className="text-right">{t('actions')}</div>
+                </div>
+
+                {/* Body Grid */}
+                <div className="flex flex-col">
+                    {materials.map((item) => (
+                        <div key={item.id} className="grid grid-cols-7 gap-4 p-4 items-center border-b border-white/5 hover:bg-white/5 transition-colors">
+                            <div className="col-span-2 font-medium text-white">{item.name}</div>
+                            <div className="text-sm text-gray-400">{item.type}</div>
+                            <div className="text-sm">฿{Number(item.costPrice).toLocaleString()}</div>
+                            <div className="text-sm">฿{Number(item.sellingPrice).toLocaleString()}</div>
+                            <div>
+                                <Chip
+                                    color={Number(item.inStock) <= 10 ? 'danger' : Number(item.inStock) <= 50 ? 'warning' : 'success'}
+                                    variant="soft"
+                                    size="sm"
+                                >
+                                    {Number(item.inStock).toLocaleString()}
+                                </Chip>
+                            </div>
+                            <div className="text-sm text-gray-400">{item.unit}</div>
+                            <div className="flex gap-2 justify-end">
+                                <Tooltip>
+                                    <Tooltip.Trigger>
+                                        <Button
+                                            isIconOnly
+                                            size="sm"
+                                            variant="tertiary"
+                                            onPress={() => handleAction(item, 'STOCK_IN')}
+                                        >
+                                            📥
+                                        </Button>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>{t('stockIn')}</Tooltip.Content>
+                                </Tooltip>
+                                <Tooltip>
+                                    <Tooltip.Trigger>
+                                        <Button
+                                            isIconOnly
+                                            size="sm"
+                                            variant="tertiary"
+                                            onPress={() => handleAction(item, 'STOCK_OUT')}
+                                        >
+                                            📤
+                                        </Button>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>{t('stockOut')}</Tooltip.Content>
+                                </Tooltip>
+                                <Tooltip>
+                                    <Tooltip.Trigger>
+                                        <Button
+                                            isIconOnly
+                                            size="sm"
+                                            variant="tertiary"
+                                            onPress={() => handleAction(item, 'ADJUSTMENT')}
+                                        >
+                                            🔧
+                                        </Button>
+                                    </Tooltip.Trigger>
+                                    <Tooltip.Content>{t('adjust')}</Tooltip.Content>
+                                </Tooltip>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             {/* Transaction Modal */}
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">
+            <Modal>
+                <Modal.Backdrop isOpen={isTransactionOpen} onOpenChange={(open) => !open && setIsTransactionOpen(false)} />
+                <Modal.Container>
+                    <Modal.Dialog className="glass border border-white/10 text-white max-w-md w-full">
+                        <Modal.Header className="border-b border-white/5 p-6">
+                            <h3 className="text-lg font-bold">
                                 {selectedMaterial?.name} - {t(transactionType === 'STOCK_IN' ? 'stockIn' : transactionType === 'STOCK_OUT' ? 'stockOut' : 'adjust')}
-                            </ModalHeader>
-                            <ModalBody>
-                                <Input
-                                    autoFocus
-                                    label={t('quantity')}
-                                    placeholder="0.00"
-                                    type="number"
-                                    variant="bordered"
-                                    value={quantity}
-                                    onValueChange={setQuantity}
-                                    endContent={
-                                        <div className="pointer-events-none flex items-center">
-                                            <span className="text-default-400 text-small">{selectedMaterial?.unit}</span>
-                                        </div>
-                                    }
-                                />
-                                <Input
-                                    label={t('reference')}
-                                    placeholder="PO-123, JOB-456"
-                                    variant="bordered"
-                                    value={reference}
-                                    onValueChange={setReference}
-                                />
-                                <Input
-                                    label={t('notes')}
-                                    placeholder="..."
-                                    variant="bordered"
-                                    value={notes}
-                                    onValueChange={setNotes}
-                                />
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="danger" variant="flat" onPress={onClose}>
-                                    {t('cancel')}
-                                </Button>
-                                <Button color="primary" onPress={handleSubmitTransaction} isLoading={isLoading}>
-                                    {t('confirm')}
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
+                            </h3>
+                        </Modal.Header>
+                        <Modal.Body className="space-y-4 py-4 text-left">
+                            <TextField type="number" value={quantity} onChange={setQuantity}>
+                                <Label>{t('quantity')}</Label>
+                                <InputGroup variant="secondary">
+                                    <InputGroup.Input placeholder="0.00" />
+                                    <InputGroup.Suffix>
+                                        <span className="text-default-400 text-small">{selectedMaterial?.unit}</span>
+                                    </InputGroup.Suffix>
+                                </InputGroup>
+                            </TextField>
+
+                            <TextField value={reference} onChange={setReference}>
+                                <Label>{t('reference')}</Label>
+                                <Input placeholder="PO-123, JOB-456" variant="secondary" />
+                            </TextField>
+
+                            <TextField value={notes} onChange={setNotes}>
+                                <Label>{t('notes')}</Label>
+                                <Input placeholder="..." variant="secondary" />
+                            </TextField>
+                        </Modal.Body>
+                        <Modal.Footer className="flex gap-2 justify-end">
+                            <Button variant="danger" onPress={() => setIsTransactionOpen(false)}>
+                                {t('cancel')}
+                            </Button>
+                            <Button variant="primary" onPress={handleSubmitTransaction} isPending={isLoading}>
+                                {t('confirm')}
+                            </Button>
+                        </Modal.Footer>
+                    </Modal.Dialog>
+                </Modal.Container>
             </Modal>
 
             {/* Add Material Modal */}
-            <Modal isOpen={isAddOpen} onOpenChange={onAddOpenChange}>
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader>{t('addMaterial')}</ModalHeader>
-                            <ModalBody>
-                                <Input
-                                    label={t('name')}
-                                    value={newMaterial.name}
-                                    onValueChange={(v) => setNewMaterial({ ...newMaterial, name: v })}
-                                    placeholder="e.g. Vinyl Glossy 3M"
-                                    variant="bordered"
-                                />
+            <Modal>
+                <Modal.Backdrop isOpen={isAddOpen} onOpenChange={(open) => !open && setIsAddOpen(false)} />
+                <Modal.Container>
+                    <Modal.Dialog className="glass border border-white/10 text-white max-w-md w-full">
+                        <Modal.Header className="border-b border-white/5 p-6">
+                            <h3 className="text-lg font-bold">{t('addMaterial')}</h3>
+                        </Modal.Header>
+                        <Modal.Body className="space-y-4 py-4 text-left">
+                            <TextField value={newMaterial.name} onChange={(v) => setNewMaterial({ ...newMaterial, name: v })}>
+                                <Label>{t('name')}</Label>
+                                <Input placeholder="e.g. Vinyl Glossy 3M" variant="secondary" />
+                            </TextField>
+
+                            <div className="flex flex-col gap-1.5">
                                 <Select
-                                    label={t('type')}
-                                    defaultSelectedKeys={['VINYL']}
-                                    onChange={(e) => setNewMaterial({ ...newMaterial, type: e.target.value })}
-                                    variant="bordered"
+                                    placeholder="Select Type"
+                                    selectedKey={newMaterial.type}
+                                    onSelectionChange={(key) => setNewMaterial({ ...newMaterial, type: key as string })}
+                                    variant="secondary"
                                 >
-                                    <SelectItem key="VINYL">Vinyl</SelectItem>
-                                    <SelectItem key="SUBSTRATE">Substrate</SelectItem>
-                                    <SelectItem key="INK">Ink</SelectItem>
-                                    <SelectItem key="OTHER">Other</SelectItem>
+                                    <Label>{t('type')}</Label>
+                                    <Select.Trigger>
+                                        <Select.Value />
+                                    </Select.Trigger>
+                                    <Select.Popover>
+                                        <ListBox>
+                                            <ListBox.Item id="VINYL" key="VINYL">Vinyl</ListBox.Item>
+                                            <ListBox.Item id="SUBSTRATE" key="SUBSTRATE">Substrate</ListBox.Item>
+                                            <ListBox.Item id="INK" key="INK">Ink</ListBox.Item>
+                                            <ListBox.Item id="OTHER" key="OTHER">Other</ListBox.Item>
+                                        </ListBox>
+                                    </Select.Popover>
                                 </Select>
-                                <div className="flex gap-2">
-                                    <Input
-                                        type="number"
-                                        label={t('cost')}
-                                        value={newMaterial.costPrice}
-                                        onValueChange={(v) => setNewMaterial({ ...newMaterial, costPrice: v })}
-                                        variant="bordered"
-                                    />
-                                    <Input
-                                        type="number"
-                                        label={t('selling')}
-                                        value={newMaterial.sellingPrice}
-                                        onValueChange={(v) => setNewMaterial({ ...newMaterial, sellingPrice: v })}
-                                        variant="bordered"
-                                    />
-                                </div>
-                                <Input
-                                    label={t('unit')}
-                                    value={newMaterial.unit}
-                                    onValueChange={(v) => setNewMaterial({ ...newMaterial, unit: v })}
-                                    variant="bordered"
-                                />
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="danger" variant="flat" onPress={onClose}>{t('cancel')}</Button>
-                                <Button color="primary" onPress={handleAddMaterial} isLoading={isLoading}>{t('confirm')}</Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
+                            </div>
+
+                            <div className="flex gap-4">
+                                <TextField className="flex-1" type="number" value={newMaterial.costPrice} onChange={(v) => setNewMaterial({ ...newMaterial, costPrice: v })}>
+                                    <Label>{t('cost')}</Label>
+                                    <Input variant="secondary" placeholder="0.00" />
+                                </TextField>
+
+                                <TextField className="flex-1" type="number" value={newMaterial.sellingPrice} onChange={(v) => setNewMaterial({ ...newMaterial, sellingPrice: v })}>
+                                    <Label>{t('selling')}</Label>
+                                    <Input variant="secondary" placeholder="0.00" />
+                                </TextField>
+                            </div>
+
+                            <TextField value={newMaterial.unit} onChange={(v) => setNewMaterial({ ...newMaterial, unit: v })}>
+                                <Label>{t('unit')}</Label>
+                                <Input variant="secondary" placeholder="sqm" />
+                            </TextField>
+                        </Modal.Body>
+                        <Modal.Footer className="flex gap-2 justify-end">
+                            <Button variant="danger" onPress={() => setIsAddOpen(false)}>{t('cancel')}</Button>
+                            <Button variant="primary" onPress={handleAddMaterial} isPending={isLoading}>{t('confirm')}</Button>
+                        </Modal.Footer>
+                    </Modal.Dialog>
+                </Modal.Container>
             </Modal>
         </>
     );
 }
+

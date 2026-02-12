@@ -4,7 +4,8 @@ import { useState } from 'react';
 import {
     Button,
     Chip,
-    Dropdown
+    Dropdown,
+    Label
 } from "@heroui/react";
 import { Plus, MoreVertical, FileText, Send, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -31,8 +32,7 @@ export default function QuotationList({
                     <p className="text-gray-400 text-sm">ดูแลและจัดการใบเสนอราคาของคุณ</p>
                 </div>
                 <Button
-                    color="primary"
-                    className="bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20 font-bold"
+                    variant="primary"
                     onPress={() => setIsModalOpen(true)}
                 >
                     <Plus size={20} className="mr-2" />
@@ -73,21 +73,23 @@ export default function QuotationList({
                             <div className="text-right">
                                 <Dropdown className="glass border border-white/10">
                                     <Dropdown.Trigger>
-                                        <Button isIconOnly variant="flat" size="sm" className="text-gray-400 hover:text-white">
+                                        <Button isIconOnly variant="secondary" size="sm" className="text-gray-400 hover:text-white">
                                             <MoreVertical size={18} />
                                         </Button>
                                     </Dropdown.Trigger>
-                                    <Dropdown.Menu aria-label="Quotation Actions">
-                                        <Dropdown.Item key="view">
-                                            <div className="flex items-center gap-2"><FileText size={16} /> View Details</div>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item key="send">
-                                            <div className="flex items-center gap-2"><Send size={16} /> Email to Customer</div>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item key="delete" className="text-danger">
-                                            <div className="flex items-center gap-2 font-bold"><Trash2 size={16} /> Delete</div>
-                                        </Dropdown.Item>
-                                    </Dropdown.Menu>
+                                    <Dropdown.Popover className="glass border border-white/10">
+                                        <Dropdown.Menu aria-label="Quotation Actions">
+                                            <Dropdown.Item key="view" textValue="View Details">
+                                                <div className="flex items-center gap-2"><FileText size={16} /> <Label>View Details</Label></div>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item key="send" textValue="Email to Customer">
+                                                <div className="flex items-center gap-2"><Send size={16} /> <Label>Email to Customer</Label></div>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item key="delete" className="text-danger" textValue="Delete">
+                                                <div className="flex items-center gap-2 font-bold"><Trash2 size={16} /> <Label>Delete</Label></div>
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown.Popover>
                                 </Dropdown>
                             </div>
                         </div>
@@ -106,9 +108,9 @@ export default function QuotationList({
 }
 
 function StatusChip({ status }: { status: string }) {
-    const colors: Record<string, "default" | "primary" | "secondary" | "success" | "warning" | "danger" | undefined> = {
+    const colors: Record<string, "default" | "accent" | "success" | "warning" | "danger" | undefined> = {
         DRAFT: "default",
-        SENT: "primary",
+        SENT: "accent",
         PAID: "success",
         VOID: "danger"
     };
@@ -116,7 +118,7 @@ function StatusChip({ status }: { status: string }) {
     return (
         <Chip
             size="sm"
-            variant="flat"
+            variant="soft"
             color={colors[status] || "default"}
             className="bg-opacity-10 border border-current font-bold"
         >
