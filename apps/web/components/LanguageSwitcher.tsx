@@ -21,21 +21,22 @@ export default function LanguageSwitcher() {
 
     return (
         <Dropdown>
-            <Button variant="secondary" className="min-w-[80px]">
+            <Button variant="tertiary" className="min-w-[80px]">
                 {languages[locale as keyof typeof languages]}
             </Button>
-            <Dropdown.Popover className="glass border border-white/10">
+            <Dropdown.Popover>
                 <Dropdown.Menu
                     aria-label="Language Selection"
                     onAction={(key) => handleSelect(key as string)}
+                    className="glass border border-white/10"
                 >
-                    <Dropdown.Item id="th" textValue="ไทย">
+                    <Dropdown.Item key="th" textValue="ไทย">
                         <Label>ไทย</Label>
                     </Dropdown.Item>
-                    <Dropdown.Item id="en" textValue="English">
+                    <Dropdown.Item key="en" textValue="English">
                         <Label>English</Label>
                     </Dropdown.Item>
-                    <Dropdown.Item id="mm" textValue="မြန်မာ">
+                    <Dropdown.Item key="mm" textValue="မြန်မာ">
                         <Label>မြန်မာ</Label>
                     </Dropdown.Item>
                 </Dropdown.Menu>

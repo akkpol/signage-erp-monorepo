@@ -5,19 +5,25 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from "react";
 
 export default function TopBar({ locale }: { locale: string }) {
     const t = useTranslations('Navigation');
     const pathname = usePathname();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Extract simple title from pathname
     const segments = pathname.split('/').filter(Boolean);
     const isRoot = segments.length <= 1; // Just locale or empty
     const lastSegment = isRoot ? 'dashboard' : segments[segments.length - 1];
-    const pageTitle = t(lastSegment, { defaultValue: lastSegment });
+    const pageTitle = mounted ? t(lastSegment, { defaultValue: lastSegment }) : lastSegment;
 
     return (
-        <header className="flex items-center justify-between h-16 px-8 glass mb-6 rounded-2xl border border-white/5 animate-in slide-in-from-top duration-500">
+        <header className="flex items-center justify-between h-16 px-8 glass mb-6 rounded-2xl border border-white/5 animate-in slide-in-from-top duration-500" suppressHydrationWarning>
             <div className="flex items-center gap-4">
                 <h2 className="text-xl font-bold text-white capitalize">{pageTitle}</h2>
             </div>

@@ -13,16 +13,16 @@ export default function ThemeSwitcher() {
         setMounted(true);
     }, []);
 
-    if (!mounted) return null;
-
     return (
         <Button
             isIconOnly
-            variant="tertiary"
+            variant="light"
             onPress={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             aria-label="Toggle Dark Mode"
+            className={mounted ? "" : "opacity-50 cursor-not-allowed"}
+            disabled={!mounted}
         >
-            {theme === 'dark' ? (
+            {mounted && theme === 'dark' ? (
                 <Sun className="text-yellow-400" size={20} />
             ) : (
                 <Moon className="text-slate-600" size={20} />
