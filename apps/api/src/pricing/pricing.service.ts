@@ -6,6 +6,7 @@ import {
   LaborCost,
   LaborType,
 } from '@signage-erp/types';
+import { PrismaService } from '../database/prisma.service';
 
 /**
  * Pricing Engine Service
@@ -18,12 +19,14 @@ import {
  */
 @Injectable()
 export class PricingService {
+  constructor(private prisma: PrismaService) {}
+
   /**
    * คำนวณราคาจาก input ที่กำหนด
    */
   async calculatePrice(input: PricingInput): Promise<PricingResult> {
     // 1. คำนวณค่าวัสดุ
-    const materialCost = this.calculateMaterialCost(input);
+    const materialCost = await this.calculateMaterialCost(input);
 
     // 2. คำนวณค่าแรงรวม
     const laborCost = this.calculateLaborCost(input.laborCosts);
@@ -65,18 +68,24 @@ export class PricingService {
    * - ถ้ามีขนาด (กว้าง × ยาว) = คำนวณจากพื้นที่
    * - ถ้าไม่มี = ใช้ quantity * ราคาต่อหน่วย
    */
-  private calculateMaterialCost(input: PricingInput): number {
-    // TODO: ดึงราคาวัสดุจาก Database
-    // ตอนนี้ hard-code ไว้ก่อน
+  private async calculateMaterialCost(input: PricingInput): Promise<number> {
+    // ดึงราคาวัสดุจาก Database
+    const material = await this.prisma.material.findUnique({
+      where: { id: input.materialId },
+    });
+
+    // ถ้าไม่พบใน DB ให้ใช้ค่าจาก Mock เดิมเป็น Fallback หรือใช้ 150 เป็น Default
     const MOCK_MATERIAL_PRICES: Record<string, number> = {
-      flex: 150, // 150 บาท/ตร.ม.
-      inkjet: 200, // 200 บาท/ตร.ม.
-      acrylic: 500, // 500 บาท/ตร.ม.
-      sticker: 100, // 100 บาท/ตร.ม.
+      flex: 150,
+      inkjet: 200,
+      acrylic: 500,
+      sticker: 100,
     };
 
     const pricePerUnit =
-      MOCK_MATERIAL_PRICES[input.materialId.toLowerCase()] || 150;
+      material?.sellingPrice ||
+      MOCK_MATERIAL_PRICES[input.materialId.toLowerCase()] ||
+      150;
 
     // ถ้ามีขนาด = คำนวณจากพื้นที่
     if (input.width && input.height) {
