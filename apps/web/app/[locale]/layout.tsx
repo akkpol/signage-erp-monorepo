@@ -53,7 +53,7 @@ export default async function RootLayout(props: {
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Providers>
-            <div className="flex min-h-screen bg-app overflow-hidden">
+            <div className="flex min-h-screen overflow-hidden" style={{backgroundColor: 'var(--bg-app)'}}>
               <Sidebar locale={locale} />
 
               <main className="flex-1 ml-64 p-6 relative flex flex-col h-screen overflow-hidden">

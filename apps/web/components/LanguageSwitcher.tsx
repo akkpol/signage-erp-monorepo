@@ -21,11 +21,9 @@ export default function LanguageSwitcher() {
 
     return (
         <Dropdown>
-            <Dropdown.Trigger>
-                <Button variant="secondary" className="min-w-[80px]">
-                    {languages[locale as keyof typeof languages]}
-                </Button>
-            </Dropdown.Trigger>
+            <Button variant="secondary" className="min-w-[80px]">
+                {languages[locale as keyof typeof languages]}
+            </Button>
             <Dropdown.Popover className="glass border border-white/10">
                 <Dropdown.Menu
                     aria-label="Language Selection"

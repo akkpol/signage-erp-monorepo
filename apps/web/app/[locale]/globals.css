@@ -1,9 +1,5 @@
 @import "tailwindcss";
-
-/* HeroUI v3 Setup */
-@source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
-
-
+@import "@heroui/styles";
 
 /* 3. Global Reset & Theme Variables */
 @theme {
@@ -17,18 +13,20 @@
   --color-glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* 4. Root Variables (Core Palette) */
+/* 4. HeroUI v3 Theme Variables + Custom Palette */
 :root {
-  --bg-app: #020617;
-  /* Deep Slate 950 */
-  --bg-card: #0f172a;
-  /* Slate 900 */
-  --text-main: #f1f5f9;
-  /* Slate 100 */
-  --text-muted: #94a3b8;
-  /* Slate 400 */
+  /* HeroUI v3 semantic variables (don't override these) */
+  /* --background, --foreground, --surface, etc. are managed by HeroUI */
+  
+  /* Custom brand colors (use CSS custom properties for brand) */
   --brand-primary: #00f2ff;
-  /* Cyber Cyan */
+  --brand-secondary: #ff00ff;
+  --bg-app: #020617;
+  --bg-card: #0f172a;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --color-glass-bg: rgba(15, 23, 42, 0.65);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
 }
 
 body {

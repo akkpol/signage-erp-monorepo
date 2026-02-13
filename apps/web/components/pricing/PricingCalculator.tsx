@@ -5,7 +5,6 @@ import {
     TextField,
     Label,
     Input,
-    InputGroup,
     Select,
     ListBox,
     Button,
@@ -110,29 +109,21 @@ export default function PricingCalculator({ materials }: { materials: Material[]
                 </div>
 
                 <div className="flex gap-4">
-                    <TextField className="flex-1" type="number" value={width} onChange={setWidth}>
+                    <TextField className="flex-1" name="width" type="number" value={width} onChange={(e) => setWidth(e.target.value)}>
                         <Label className="text-sm font-medium">{t('width')}</Label>
-                        <InputGroup variant="secondary">
-                            <InputGroup.Input placeholder="0" />
-                            <InputGroup.Suffix>
-                                <span className="text-default-400 text-[10px] font-bold">{t('centimeters')}</span>
-                            </InputGroup.Suffix>
-                        </InputGroup>
+                        <Input variant="secondary" placeholder="0" />
+                        <div className="text-default-400 text-[10px] font-bold mt-1">{t('centimeters')}</div>
                     </TextField>
 
-                    <TextField className="flex-1" type="number" value={height} onChange={setHeight}>
+                    <TextField className="flex-1" name="height" type="number" value={height} onChange={(e) => setHeight(e.target.value)}>
                         <Label className="text-sm font-medium">{t('height')}</Label>
-                        <InputGroup variant="secondary">
-                            <InputGroup.Input placeholder="0" />
-                            <InputGroup.Suffix>
-                                <span className="text-default-400 text-[10px] font-bold">{t('centimeters')}</span>
-                            </InputGroup.Suffix>
-                        </InputGroup>
+                        <Input variant="secondary" placeholder="0" />
+                        <div className="text-default-400 text-[10px] font-bold mt-1">{t('centimeters')}</div>
                     </TextField>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                    <TextField type="number" value={quantity} onChange={setQuantity}>
+                    <TextField name="quantity" type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)}>
                         <Label className="text-sm font-medium">{t('quantity')}</Label>
                         <Input variant="secondary" placeholder="1" />
                     </TextField>

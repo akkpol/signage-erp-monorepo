@@ -9,9 +9,13 @@
   ],
   "scripts": {
     "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@signage-erp/web",
     "build": "turbo run build",
+    "build:web": "turbo run build --filter=@signage-erp/web",
     "lint": "turbo run lint",
+    "lint:web": "turbo run lint --filter=@signage-erp/web",
     "type-check": "turbo run type-check",
+    "type-check:web": "turbo run type-check --filter=@signage-erp/web",
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
