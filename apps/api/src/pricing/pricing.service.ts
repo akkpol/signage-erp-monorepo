@@ -131,6 +131,27 @@ export class PricingService {
       errors.push('discountPercent must be between 0 and 100');
     }
 
+    if (input.marginPercent !== undefined && input.marginPercent < 0) {
+      errors.push('marginPercent must be greater than or equal to 0');
+    }
+
+    if (input.laborCosts && input.laborCosts.length > 20) {
+      errors.push('laborCosts cannot exceed 20 items');
+    }
+
+    if (input.laborCosts) {
+      for (const labor of input.laborCosts) {
+        if (labor.amount < 0) {
+          errors.push('Labor cost amount cannot be negative');
+          break;
+        }
+        if (labor.quantity !== undefined && labor.quantity < 0) {
+          errors.push('Labor cost quantity cannot be negative');
+          break;
+        }
+      }
+    }
+
     return errors;
   }
 }
