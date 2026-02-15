@@ -108,8 +108,8 @@ export class PricingService {
   validateInput(input: PricingInput): string[] {
     const errors: string[] = [];
 
-    if (!input.materialId) {
-      errors.push('materialId is required');
+    if (!input.materialId || typeof input.materialId !== 'string') {
+      errors.push('materialId must be a valid string');
     }
 
     if (input.quantity <= 0) {
@@ -129,6 +129,23 @@ export class PricingService {
       (input.discountPercent < 0 || input.discountPercent > 100)
     ) {
       errors.push('discountPercent must be between 0 and 100');
+    }
+
+    if (input.marginPercent && input.marginPercent < 0) {
+      errors.push('marginPercent must be greater than or equal to 0');
+    }
+
+    if (!Array.isArray(input.laborCosts)) {
+      // If it's undefined, we can treat it as empty or required depending on logic.
+      // Assuming it's required as per interface, but if it's undefined, reduce() will fail later.
+      // The interface says laborCosts: LaborCost[]; so it should be required.
+      if (input.laborCosts === undefined || input.laborCosts === null) {
+        errors.push('laborCosts is required');
+      } else {
+        errors.push('laborCosts must be an array');
+      }
+    } else if (input.laborCosts.length > 20) {
+      errors.push('laborCosts cannot exceed 20 items');
     }
 
     return errors;
