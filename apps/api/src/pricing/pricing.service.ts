@@ -131,6 +131,28 @@ export class PricingService {
       errors.push('discountPercent must be between 0 and 100');
     }
 
+    // Validate labor costs
+    if (input.laborCosts) {
+      if (!Array.isArray(input.laborCosts)) {
+        errors.push('laborCosts must be an array');
+      } else {
+        if (input.laborCosts.length > 20) {
+          errors.push('Too many labor costs items (max 20)');
+        }
+
+        input.laborCosts.forEach((cost, index) => {
+          if (cost.amount < 0) {
+            errors.push(`Labor cost #${index + 1} amount must be non-negative`);
+          }
+          if (cost.quantity !== undefined && cost.quantity < 0) {
+            errors.push(
+              `Labor cost #${index + 1} quantity must be non-negative`,
+            );
+          }
+        });
+      }
+    }
+
     return errors;
   }
 }
