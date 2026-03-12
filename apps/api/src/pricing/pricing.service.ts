@@ -116,11 +116,11 @@ export class PricingService {
       errors.push('quantity must be greater than 0');
     }
 
-    if (input.width && input.width <= 0) {
+    if (input.width !== undefined && input.width <= 0) {
       errors.push('width must be greater than 0');
     }
 
-    if (input.height && input.height <= 0) {
+    if (input.height !== undefined && input.height <= 0) {
       errors.push('height must be greater than 0');
     }
 
