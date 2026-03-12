@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../database/prisma.service';
+import { CreateDesignFileDto } from './dto/create-design-file.dto';
 
 @Injectable()
 export class DesignFileService {
@@ -9,14 +10,7 @@ export class DesignFileService {
      * สร้าง DesignFile ใหม่พร้อมระบบตั้งชื่ออัตโนมัติ
      * รูปแบบ: {ORG}-{ORDER}-{SEQ}-V{VERSION}.ai
      */
-    async create(data: {
-        organizationId: string;
-        orderItemId: string;
-        externalLink: string;
-        uploadedById: string;
-        notes?: string;
-        tags?: string[];
-    }) {
+    async create(data: CreateDesignFileDto) {
         // 1. ดึงข้อมูลที่จำเป็นสำหรับการตั้งชื่อ (Organization Name, Order Number)
         const orderItem = await this.prisma.orderItem.findUnique({
             where: { id: data.orderItemId },
